@@ -21,7 +21,7 @@
   onMount(() => {
     loadJS();
 
-    gsap.from(".person", {y:'100%', ease: "power4", duration: 1})
+    gsap.from(".person", { y: "100%", ease: "power4", duration: 1 });
   });
 </script>
 
@@ -58,11 +58,11 @@
       </div>
       <!--/column -->
       <div class="col-lg-5">
-        <h6 class="display-4 mb-6 pe-xxl-6 fs-24 text-center">
-          Bhaskara 
-        </h6>
-        <p class="text-justify">Seorang ayah muda 
-          hidup dalam kondisi ekonomi yang tidak menguntungkan.</p>
+        <h6 class="display-4 mb-6 pe-xxl-6 fs-24 text-center">Bhaskara</h6>
+        <p class="text-justify">
+          Seorang ayah muda hidup dalam kondisi ekonomi yang tidak
+          menguntungkan.
+        </p>
         <ul class="progress-list mt-3">
           <li>
             <p class="description">
@@ -228,26 +228,6 @@
 <!-- content -->
 
 <style>
-<<<<<<< HEAD
-/* CSS */
-.person {
-  /* transform: ; */
-  transform: scale(2) translate(0, 20%);
-}
-.talk-bubble {
-	margin: 0px;
-  display: inline-block;
-  position: relative;
-	width: 200px;
-	height: auto;
-	background-color: lightcoral;
-}
-.round{
-  border-radius: 15px;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-} 
-=======
   /* CSS talk bubble */
   .talk-bubble {
     margin: 0px;
@@ -262,7 +242,6 @@
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
   }
->>>>>>> e8bd8acffc60938ecd0fdb13c0064c917f3d6233
 
   .description {
     text-indent: 50px;
@@ -280,26 +259,6 @@
     border-color: lightcoral lightcoral transparent transparent;
   }
 
-<<<<<<< HEAD
-.hightlight {
-  background: #45C4A0;
-  color: white;
-  padding: 6px;
-  border-radius: 10px;
-}
-/* talk bubble contents */
-.talktext{
-  padding: 1em;
-  color: whitesmoke;
-	text-align: left;
-  line-height: 1.5em;
-}
-.talktext p{
-  /* remove webkit p margins */
-  -webkit-margin-before: 0em;
-  -webkit-margin-after: 0em;
-}
-=======
   .hightlight {
     background: lightgoldenrodyellow;
   }
@@ -315,5 +274,4 @@
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
   }
->>>>>>> e8bd8acffc60938ecd0fdb13c0064c917f3d6233
 </style>
