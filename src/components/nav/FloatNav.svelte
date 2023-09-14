@@ -53,7 +53,6 @@
   .float-nav {
     position: fixed;
     top: 35%;
-
-    right: 5%;
+    right: 1vh;
   }
 </style>
