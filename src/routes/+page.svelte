@@ -40,7 +40,7 @@
       <div class="col-lg-7">
         <div class="talk-bubble tri-right round btm-right">
           <div class="talktext">
-            <p class="fw-bold">Hai!, Saya Mardiansah</p>
+            <p class="text-center">Hai!, Saya Bhaskara</p>
           </div>
         </div>
         <figure>
@@ -54,22 +54,34 @@
       </div>
       <!--/column -->
       <div class="col-lg-5">
-        <h6 class="display-4 mb-6 pe-xxl-6 fs-24">Mardiansah, seorang ayah muda, hidup dalam kondisi ekonomi yang tidak menguntungkan. </h6>
+        <h6 class="display-4 mb-6 pe-xxl-6 fs-24 text-center">
+          Bhaskara, seorang ayah muda 
+          <!-- hidup dalam kondisi ekonomi yang tidak menguntungkan.  -->
+        </h6>
         <ul class="progress-list mt-3">
           <li>
-            <p>Marketing</p>
+            <p class="description">
+              Bhaskara hidup dalam kondisi ekonomi yang tidak menguntungkan, merawat orangtuanya yang menua telah menguras sumber daya finansialnya. Biaya medis yang tak kunjung habis membuatnya merasa terjebak dalam utang yang bertambah besar. 
+              Selain itu, biaya pendidikan anak-anaknya semakin membuatnya gelisah karena tidak tahu bagaimana akan mencukupinya. Kondisi ini semakin diperburuk dengan penyesuaian 
+              jam kerja yang harus ia lakukan untuk merawat keluarganya. Penghasilannya semakin mengecil, dan ia merasa seperti terperangkap dalam lingkaran yang tak berujung dari 
+              masalah keuangan.</p>
             <div class="progressbar line blue" data-value="100" />
           </li>
           <li>
-            <p>Strategy</p>
+            <p class="description">Namun, kendati terpuruk, Bhaskara tetap berusaha dengan segala cara untuk menjaga keluarganya tetap berjalan. Ia tahu bahwa cinta dan komitmen yang ia miliki terhadap 
+              keluarganya adalah kekuatan yang bisa membantu mereka melalui masa-masa sulit ini. Meskipun suasana bisa gelap, ia tetap mencari jalan untuk keluar dan mencari bantuan 
+              yang diperlukan untuk mengatasi tantangan ekonominya.</p>
             <div class="progressbar line yellow" data-value="80" />
           </li>
           <li>
-            <p>Development</p>
+            <p class="text-center">
+              <b> Tak asing dengan cerita diatas ? </b><br> 
+              <b>Pernahkan kalian bertemu dengan Mardiansah lain di sekitar kalian ?</b> <br>
+              <b>Atau bahkan, kalian bernasib sama dengan Mardiansah ?. </b></p>
             <div class="progressbar line orange" data-value="85" />
           </li>
           <li>
-            <p>Data Analysis</p>
+            <p class="text-center">Ya. Mardiansah adalah satu dari sekian banyak <span class="hightlight"> generasi sandwich</span> di Indonesia.</p>
             <div class="progressbar line green" data-value="90" />
           </li>
         </ul>
@@ -93,7 +105,7 @@
   position: relative;
 	width: 200px;
 	height: auto;
-	background-color: lightblue;
+	background-color: lightcoral;
 }
 .round{
   border-radius: 15px;
@@ -101,6 +113,10 @@
 	-moz-border-radius: 15px;
 } 
 
+.description {
+  text-indent: 50px;
+  text-align: justify;
+}
 .tri-right.btm-right:after{
 	content: ' ';
 	position: absolute;
@@ -108,14 +124,18 @@
 	height: 0;
   left: auto;
 	right: 0px;
-	bottom: -12px;
+	bottom: -10px;
 	border: 12px solid;
-	border-color: lightblue lightblue transparent transparent;
+	border-color: lightcoral lightcoral transparent transparent;
 }
 
+.hightlight {
+  background: lightgoldenrodyellow;
+}
 /* talk bubble contents */
 .talktext{
   padding: 1em;
+  color: whitesmoke;
 	text-align: left;
   line-height: 1.5em;
 }
