@@ -21,7 +21,9 @@
   onMount(() => {
     loadJS();
 
-    gsap.from(".person", {y:'200%', ease: "power1", duration: 1})
+    const tl = gsap.timeline();
+    tl.from(".person", {y:'200%', ease: "power1", duration: 1})
+    .from(".person-bubble", {opacity: 0, duration: 1 })
   });
 </script>
 
@@ -46,23 +48,25 @@
       srcset="/images/illustration/people1.svg"
       alt=""
     />
+    <div class="talk-bubble tri-right round btm-right person-bubble">
+      <div class="talktext">
+        <p class="text-center">Hai!, Saya Bhaskara</p>
+      </div>
+    </div>
   </figure>
   <div class="container py-md-16 p-0">
     <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top">
-      <div class="col-lg-7 p-0">
-        <div class="talk-bubble tri-right round btm-right">
-          <div class="talktext">
-            <p class="text-center">Hai!, Saya Bhaskara</p>
-          </div>
-        </div>
+      <div class="col p-0">
       </div>
       <!--/column -->
-      <div class="col-lg-5">
-        <h6 class="display-4 mb-6 pe-xxl-6 fs-50 text-center">Bhaskara</h6>
-        <p class="text-justify">
-          Seorang ayah muda hidup dalam kondisi ekonomi yang tidak
-          menguntungkan.
-        </p>
+      <div class="col-lg-7">
+        <div class="starting-point">
+          <h6 class="display-4 mb-6 pe-xxl-6 fs-64 mb-5">Bhaskara</h6>
+          <p class="text-justify fs-30 lh-sm">
+            Seorang ayah muda, hidup dalam kondisi ekonomi yang tidak
+            menguntungkan.
+          </p>
+        </div>
         <ul class="progress-list mt-3">
           <li>
             <p class="description">
@@ -146,10 +150,11 @@
   transform: scale(2) translate(0, 35%);
 }
 .talk-bubble {
-	margin-top: 100px;
   margin-left: 0px;
+  left: 5%;
+  bottom: 70% !important;
   display: inline-block;
-  position: relative;
+  position: fixed;
 	width: 250px;
 	height: auto;
 	background-color: lightcoral;
