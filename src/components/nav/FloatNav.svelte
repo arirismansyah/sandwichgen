@@ -54,5 +54,6 @@
     position: fixed;
     top: 35%;
     right: 1vh;
+    z-index: 9999;
   }
 </style>
