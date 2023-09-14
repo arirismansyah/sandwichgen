@@ -1,6 +1,7 @@
 <script>
   import FloatNav from "../components/nav/FloatNav.svelte";
   import { onMount } from "svelte";
+  import gsap from "gsap";
 
   const loadJS = () => {
     const pluginsJS = document.createElement("script");
@@ -19,6 +20,8 @@
 
   onMount(() => {
     loadJS();
+
+    gsap.from(".person", {y:'100%', ease: "power4", duration: 1})
   });
 </script>
 
@@ -45,7 +48,8 @@
         </div>
         <figure>
           <img
-            class="w-auto mt-0"
+            id="person"
+            class="w-auto mt-0 person"
             src="/images/illustration/people1.svg"
             srcset="/images/illustration/people1.svg"
             alt=""
@@ -85,6 +89,13 @@
             <p class="text-center">
               Ya!!. Bhaskara adalah satu dari sekian banyak <br> <span class="hightlight"> generasi sandwich</span> di Indonesia.
             </p>
+            <p class="fw-bold">Lantas</p>
+            <div class="progressbar line green" data-value="90" />
+          </li>
+          <li>
+            <p class="text-center">
+              Apa itu generasi sandwich ? Mengapa disebut generasi sandwich ? Dan bagaimana agar Mardiansah mampu keluar dari jerat ekonomi yang begitu sulit ? Mari kita simak ~
+            </p>
             <div class="progressbar line green" data-value="90" />
           </li>
         </ul>
@@ -101,7 +112,11 @@
 <FloatNav />
 
 <style>
-/* CSS talk bubble */
+/* CSS */
+.person {
+  /* transform: ; */
+  transform: scale(2) translate(0, 20%);
+}
 .talk-bubble {
 	margin: 0px;
   display: inline-block;
