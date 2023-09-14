@@ -1,4 +1,25 @@
 <script>
+  import FloatNav from "../components/nav/FloatNav.svelte";
+  import { onMount } from "svelte";
+
+  const loadJS = () => {
+    const pluginsJS = document.createElement("script");
+    pluginsJS.setAttribute("src", "/assets_template/js/plugins.js");
+    document.head.appendChild(pluginsJS);
+
+    const themeJS = document.createElement("script");
+    themeJS.setAttribute("src", "/assets_template/js/theme.js");
+    document.head.appendChild(themeJS);
+
+    setTimeout(() => {
+      theme.init();
+      TyperSetup();
+    }, 100);
+  };
+
+  onMount(() => {
+    loadJS();
+  });
 </script>
 
 <svelte:head>
@@ -19,14 +40,14 @@
       <div class="col-lg-7">
         <div class="talk-bubble tri-right round btm-right">
           <div class="talktext">
-            <p>Hai!, Saya Mardiansah</p>
+            <p class="fw-bold">Hai!, Saya Mardiansah</p>
           </div>
         </div>
         <figure>
           <img
             class="w-auto mt-0"
-            src="/images/people1.svg"
-            srcset="/images/people1.svg"
+            src="/images/illustration/people1.svg"
+            srcset="/images/illustration/people1.svg"
             alt=""
           />
         </figure>
@@ -62,9 +83,9 @@
 </section>
 
 <!-- /section -->
+<FloatNav />
 
 <style>
-
 /* CSS talk bubble */
 .talk-bubble {
 	margin: 0px;
@@ -104,3 +125,5 @@
   -webkit-margin-after: 0em;
 }
 </style>
+<!-- content -->
+<!-- content -->
