@@ -58,11 +58,11 @@
       </div>
       <!--/column -->
       <div class="col-lg-5">
-        <h6 class="display-4 mb-6 pe-xxl-6 fs-24 text-center">
-          Bhaskara 
-        </h6>
-        <p class="text-justify">Seorang ayah muda 
-          hidup dalam kondisi ekonomi yang tidak menguntungkan.</p>
+        <h6 class="display-4 mb-6 pe-xxl-6 fs-50 text-center">Bhaskara</h6>
+        <p class="text-justify">
+          Seorang ayah muda hidup dalam kondisi ekonomi yang tidak
+          menguntungkan.
+        </p>
         <ul class="progress-list mt-3">
           <li>
             <p class="description">
