@@ -16,16 +16,16 @@
 <section class="wrapper bg-light">
   <div class="container py-14 py-md-16">
     <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
-      <div class="col-lg-7">
-        <figure>
-          <img
-            class="w-auto"
-            src="/images/people1.svg"
-            srcset="/images/people1.svg"
-            alt=""
-          />
-        </figure>
-      </div>
+      <!-- image here -->
+      <figure>
+        <img
+          style="width: 10000px; height: 100; cli"
+          src="/images/people1.svg#svgView(viewBox(48, 53, 48, 53))"
+          srcset="/images/people1.svg"
+          alt=""
+        />
+      </figure>
+
       <!--/column -->
       <div class="col-lg-5">
         <h3 class="display-4 mb-6 pe-xxl-6">Mardiansah</h3>
