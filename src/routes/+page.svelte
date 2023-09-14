@@ -55,13 +55,14 @@
       <!--/column -->
       <div class="col-lg-5">
         <h6 class="display-4 mb-6 pe-xxl-6 fs-24 text-center">
-          Bhaskara, seorang ayah muda 
-          <!-- hidup dalam kondisi ekonomi yang tidak menguntungkan.  -->
+          Bhaskara 
         </h6>
+        <p class="text-justify">Seorang ayah muda 
+          hidup dalam kondisi ekonomi yang tidak menguntungkan.</p>
         <ul class="progress-list mt-3">
           <li>
             <p class="description">
-              Bhaskara hidup dalam kondisi ekonomi yang tidak menguntungkan, merawat orangtuanya yang menua telah menguras sumber daya finansialnya. Biaya medis yang tak kunjung habis membuatnya merasa terjebak dalam utang yang bertambah besar. 
+              Merawat orangtuanya yang menua telah menguras sumber daya finansialnya. Biaya medis yang tak kunjung habis membuatnya merasa terjebak dalam utang yang bertambah besar. 
               Selain itu, biaya pendidikan anak-anaknya semakin membuatnya gelisah karena tidak tahu bagaimana akan mencukupinya. Kondisi ini semakin diperburuk dengan penyesuaian 
               jam kerja yang harus ia lakukan untuk merawat keluarganya. Penghasilannya semakin mengecil, dan ia merasa seperti terperangkap dalam lingkaran yang tak berujung dari 
               masalah keuangan.</p>
@@ -76,12 +77,14 @@
           <li>
             <p class="text-center">
               <b> Tak asing dengan cerita diatas ? </b><br> 
-              <b>Pernahkan kalian bertemu dengan Mardiansah lain di sekitar kalian ?</b> <br>
-              <b>Atau bahkan, kalian bernasib sama dengan Mardiansah ?. </b></p>
+              <b>Pernahkan kalian bertemu dengan Bhaskara lain di sekitar kalian ?</b> <br>
+              <b>Atau bahkan, kalian bernasib sama dengan Bhaskara ?. </b></p>
             <div class="progressbar line orange" data-value="85" />
           </li>
           <li>
-            <p class="text-center">Ya. Mardiansah adalah satu dari sekian banyak <span class="hightlight"> generasi sandwich</span> di Indonesia.</p>
+            <p class="text-center">
+              Ya!!. Bhaskara adalah satu dari sekian banyak <br> <span class="hightlight"> generasi sandwich</span> di Indonesia.
+            </p>
             <div class="progressbar line green" data-value="90" />
           </li>
         </ul>
@@ -130,7 +133,10 @@
 }
 
 .hightlight {
-  background: lightgoldenrodyellow;
+  background: #45C4A0;
+  color: white;
+  padding: 6px;
+  border-radius: 10px;
 }
 /* talk bubble contents */
 .talktext{
