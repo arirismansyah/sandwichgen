@@ -21,7 +21,9 @@
   onMount(() => {
     loadJS();
 
-    gsap.from(".person", { y: "100%", ease: "power4", duration: 1 });
+    const tl = gsap.timeline();
+    tl.from(".person", {y:'200%', ease: "power1", duration: 1})
+    .from(".person-bubble", {opacity: 0, duration: 1 })
   });
 </script>
 
@@ -38,31 +40,33 @@
 </svelte:head>
 
 <section class="wrapper bg-light">
-  <div class="container py-14 py-md-16">
-    <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
-      <div class="col-lg-7">
-        <div class="talk-bubble tri-right round btm-right">
-          <div class="talktext">
-            <p class="text-center">Hai!, Saya Bhaskara</p>
-          </div>
-        </div>
-        <figure>
-          <img
-            id="person"
-            class="w-auto mt-0 person"
-            src="/images/illustration/people1.svg"
-            srcset="/images/illustration/people1.svg"
-            alt=""
-          />
-        </figure>
+  <figure>
+    <img
+      id="person"
+      class="w-auto mt-0 person"
+      src="/images/illustration/people1.svg"
+      srcset="/images/illustration/people1.svg"
+      alt=""
+    />
+    <div class="talk-bubble tri-right round btm-right person-bubble">
+      <div class="talktext">
+        <p class="text-center">Hai!, Saya Bhaskara</p>
+      </div>
+    </div>
+  </figure>
+  <div class="container py-md-16 p-0">
+    <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top">
+      <div class="col p-0">
       </div>
       <!--/column -->
-      <div class="col-lg-5">
-        <h6 class="display-4 mb-6 pe-xxl-6 fs-24 text-center">Bhaskara</h6>
-        <p class="text-justify">
-          Seorang ayah muda hidup dalam kondisi ekonomi yang tidak
-          menguntungkan.
-        </p>
+      <div class="col-lg-7">
+        <div class="starting-point">
+          <h6 class="display-4 mb-6 pe-xxl-6 fs-64 mb-5">Bhaskara</h6>
+          <p class="text-justify fs-30 lh-sm">
+            Seorang ayah muda, hidup dalam kondisi ekonomi yang tidak
+            menguntungkan.
+          </p>
+        </div>
         <ul class="progress-list mt-3">
           <li>
             <p class="description">
@@ -124,97 +128,7 @@
 
 <!-- /section -->
 <FloatNav />
-<!-- content -->
-<div class="content-wrapper">
-  <!-- /header -->
-  <section class="wrapper">
-    <!-- /.container -->
-    <div class="bg-img-wrapper" style="height: 100vh; overflow: hidden;">
-      <img
-        style="width: 150%; left: -30%; top: -10%; position: relative;"
-        src="/images/illustration/people1.svg"
-        alt=""
-      />
-    </div>
-  </section>
-  <!-- /section -->
-
-  <!-- /section -->
-</div>
-<!-- /.content-wrapper -->
-<footer class="bg-dark text-inverse">
-  <div class="container pt-20 pt-lg-21 pb-7">
-    <div class="row gy-6 gy-lg-0">
-      <div class="col-lg-4">
-        <div class="widget">
-          <h3 class="h2 mb-3 text-white">Join the Community</h3>
-          <p class="lead mb-5">
-            Let's make something great together. We are trusted by over 5000+
-            clients. Join them by using our services and grow your business.
-          </p>
-          <a href="#" class="btn btn-white rounded-pill">Join Us</a>
-        </div>
-        <!-- /.widget -->
-      </div>
-      <!-- /column -->
-      <div class="col-md-4 col-lg-2 offset-lg-2">
-        <div class="widget">
-          <h4 class="widget-title text-white mb-3">Need Help?</h4>
-          <ul class="list-unstyled text-reset mb-0">
-            <li><a href="#">Support</a></li>
-            <li><a href="#">Get Started</a></li>
-            <li><a href="#">Terms of Use</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <!-- /.widget -->
-      </div>
-      <!-- /column -->
-      <div class="col-md-4 col-lg-2">
-        <div class="widget">
-          <h4 class="widget-title text-white mb-3">Learn More</h4>
-          <ul class="list-unstyled mb-0">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Our Story</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Features</a></li>
-          </ul>
-        </div>
-        <!-- /.widget -->
-      </div>
-      <!-- /column -->
-      <div class="col-md-4 col-lg-2">
-        <div class="widget">
-          <h4 class="widget-title text-white mb-3">Get in Touch</h4>
-          <address>
-            Moonshine St. 14/05 Light City, London, United Kingdom
-          </address>
-          <a href="mailto:first.last@email.com">info@email.com</a><br /> 00 (123)
-          456 78 90
-        </div>
-        <!-- /.widget -->
-      </div>
-      <!-- /column -->
-    </div>
-    <!--/.row -->
-    <hr class="mt-13 mt-md-15 mb-7" />
-    <div class="d-md-flex align-items-center justify-content-between">
-      <p class="mb-2 mb-lg-0">© 2021 Sandbox. All rights reserved.</p>
-      <nav class="nav social social-white text-md-end">
-        <a href="#"><i class="uil uil-twitter" /></a>
-        <a href="#"><i class="uil uil-facebook-f" /></a>
-        <a href="#"><i class="uil uil-dribbble" /></a>
-        <a href="#"><i class="uil uil-instagram" /></a>
-        <a href="#"><i class="uil uil-youtube" /></a>
-      </nav>
-      <!-- /.social -->
-    </div>
-    <!-- /div -->
-  </div>
-  <!-- /.container -->
-</footer>
-<div class="progress-wrap">
+<!-- <div class="progress-wrap">
   <svg
     class="progress-circle svg-content"
     width="100%"
@@ -223,25 +137,33 @@
   >
     <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
   </svg>
-</div>
+</div> -->
 
 <!-- content -->
 
 <style>
-  /* CSS talk bubble */
-  .talk-bubble {
-    margin: 0px;
-    display: inline-block;
-    position: relative;
-    width: 200px;
-    height: auto;
-    background-color: lightcoral;
-  }
-  .round {
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-  }
+/* CSS */
+.person {
+  position: fixed;
+  bottom: 0%;
+  left: 10%;
+  transform: scale(2) translate(0, 35%);
+}
+.talk-bubble {
+  margin-left: 0px;
+  left: 5%;
+  bottom: 70% !important;
+  display: inline-block;
+  position: fixed;
+	width: 250px;
+	height: auto;
+	background-color: lightcoral;
+}
+.round{
+  border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+} 
 
   .description {
     text-indent: 50px;
@@ -259,19 +181,23 @@
     border-color: lightcoral lightcoral transparent transparent;
   }
 
-  .hightlight {
-    background: lightgoldenrodyellow;
-  }
-  /* talk bubble contents */
-  .talktext {
-    padding: 1em;
-    color: whitesmoke;
-    text-align: left;
-    line-height: 1.5em;
-  }
-  .talktext p {
-    /* remove webkit p margins */
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
-  }
+.hightlight {
+  background: #45C4A0;
+  color: white;
+  padding: 6px;
+  border-radius: 10px;
+}
+/* talk bubble contents */
+.talktext{
+  padding: 1em;
+  color: whitesmoke;
+	text-align: left;
+  line-height: 1.5em;
+  font-size: larger;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
 </style>
