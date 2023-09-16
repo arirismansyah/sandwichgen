@@ -23,15 +23,13 @@
 
   onMount(() => {
     loadJS();
-
-    // gsap.set(".starting-point", {height: '100vh'})
-
     const tl = gsap.timeline();
-    tl.to(".person", {y:'-100%', ease: "power1", duration: 1})
+
+    tl
+    .to(".person", {top: '70%', ease: "power1", duration: 1})
     .from(".person-bubble", {opacity: 0, duration: 1 })
     .fromTo('.starting-point', {opacity: 0, duration:0.5, y:'-20%'}, 
     {ease: bounceOut, duration: 0.5, y:'100%', opacity: 1});
-    
     
     gsap.registerPlugin(ScrollTrigger)
     gsap.set('.sec-1', {scale: 0});
@@ -52,25 +50,33 @@
       pin: true,
       toggleActions: "play none none reverse",
       end: '+=100',
-      id: 'starting'
+      id: 'starting',
+      onRefresh:(self) => 
+        self.progress && self.animation.progress(1)
     }})
-
+    
     gsap.to('.sec-1', {scale: 1, 
     scrollTrigger: {
-      trigger:'.start-animate',
+      trigger:'.start-point',
       start: 'top top',
       toggleActions: "play none none reverse",
-      end: '+=100',
-      pin: '.sec',
-      scrub: true,
+      end: '+=200',
+      pin: true,
       markers: true,
+      scrub: true,
       id: 'section'
     }})
 
-    // tlScroll.addLabel('start')
-    // .to('.starting-point', {scale: 0})
-    // .to('.sec', {scale: 1, y: '100%'})
-    // +=3500
+    gsap.to('.person', {top: '20%', scale: 1.5, 
+    scrollTrigger: {
+      trigger:'.start-point',
+      start: 'top top',
+      toggleActions: "play none none reverse",
+      end: '+=200',
+      pin: true,
+      markers: true,
+      id: 'image'
+    }})
   });
 </script>
 
@@ -117,7 +123,7 @@
     </p>  
   </div>
 
-  <div class="container py-md-16 d-flex" style="height: 500vh;">
+  <div class="container py-md-16 d-flex" style="height: 500vh;" id="container">
     <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
       <div class="col p-0">
       </div>
@@ -219,10 +225,11 @@
 } */
 .person {
   position: fixed;
-  bottom: 0%;
   left: 10%;
   top: 200%;
-  transform: scale(2) translate(0, 35%);
+  transform: scale(2);
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
 }
 .starting-point {
   overflow: hidden;
