@@ -1,10 +1,3 @@
 <svg width="116" height="27" viewBox="0 0 116 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="0.0753174" width="115.054" height="26.8817" rx="13.4409" fill="#FFAE52"/>
-<ellipse cx="14.9954" cy="12.2156" rx="4.06352" ry="1.43369" transform="rotate(-30 14.9954 12.2156)" fill="white"/>
-<ellipse cx="68.8274" cy="18.6856" rx="4.06352" ry="1.43369" transform="rotate(-30 68.8274 18.6856)" fill="white"/>
-<ellipse cx="30.2745" cy="19.1224" rx="4.06352" ry="1.43369" transform="rotate(-140 30.2745 19.1224)" fill="white"/>
-<ellipse cx="75.7943" cy="6.93605" rx="4.06352" ry="1.43369" transform="rotate(-140 75.7943 6.93605)" fill="white"/>
-<ellipse cx="99.8086" cy="9.44502" rx="4.06353" ry="1.43369" transform="rotate(-140 99.8086 9.44502)" fill="white"/>
-<ellipse cx="47.5458" cy="10.4561" rx="3.55655" ry="1.43369" transform="rotate(-50 47.5458 10.4561)" fill="white"/>
-<ellipse cx="90.9149" cy="19.4167" rx="3.55655" ry="1.43369" transform="rotate(-50 90.9149 19.4167)" fill="white"/>
+<rect x="2.07532" y="2" width="111.054" height="22.8817" rx="3" fill="#FFAE52" stroke="#FF8E0D" stroke-width="4"/>
 </svg>
