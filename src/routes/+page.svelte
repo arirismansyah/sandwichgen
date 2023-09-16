@@ -2,6 +2,9 @@
   import FloatNav from "../components/nav/FloatNav.svelte";
   import { onMount } from "svelte";
   import gsap from "gsap";
+  import { bounceOut } from "svelte/easing";
+  import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
+  // import {ScrollSmoother} from "gsap/dist/ScrollSmoother";
 
   const loadJS = () => {
     const pluginsJS = document.createElement("script");
@@ -21,9 +24,53 @@
   onMount(() => {
     loadJS();
 
+    // gsap.set(".starting-point", {height: '100vh'})
+
     const tl = gsap.timeline();
-    tl.from(".person", {y:'200%', ease: "power1", duration: 1})
+    tl.to(".person", {y:'-100%', ease: "power1", duration: 1})
     .from(".person-bubble", {opacity: 0, duration: 1 })
+    .fromTo('.starting-point', {opacity: 0, duration:0.5, y:'-20%'}, 
+    {ease: bounceOut, duration: 0.5, y:'100%', opacity: 1});
+    
+    
+    gsap.registerPlugin(ScrollTrigger)
+    gsap.set('.sec-1', {scale: 0});
+
+    // const tlScroll = gsap.timeline({
+    //   scrollTrigger: {
+    //   trigger: ".starting-point",
+    //   pin: true,   // pin the trigger element while active
+    //   start: "top top", // when the top of the trigger hits the top of the viewport
+    //   end: innerHeight * 1.3, // end after scrolling 500px beyond the start
+    //   scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+    // }});
+
+    gsap.to('.starting-point', {scale: 0, 
+    scrollTrigger: {
+      trigger:'.start-animate',
+      start: 'top top',
+      pin: true,
+      toggleActions: "play none none reverse",
+      end: '+=100',
+      id: 'starting'
+    }})
+
+    gsap.to('.sec-1', {scale: 1, 
+    scrollTrigger: {
+      trigger:'.start-animate',
+      start: 'top top',
+      toggleActions: "play none none reverse",
+      end: '+=100',
+      pin: '.sec',
+      scrub: true,
+      markers: true,
+      id: 'section'
+    }})
+
+    // tlScroll.addLabel('start')
+    // .to('.starting-point', {scale: 0})
+    // .to('.sec', {scale: 1, y: '100%'})
+    // +=3500
   });
 </script>
 
@@ -44,8 +91,8 @@
     <img
       id="person"
       class="w-auto mt-0 person"
-      src="/images/illustration/people1.svg"
-      srcset="/images/illustration/people1.svg"
+      src="/images/illustration/people1_1x.png"
+      srcset="/images/illustration/people1_1x.png"
       alt=""
     />
     <div class="talk-bubble tri-right round btm-right person-bubble">
@@ -54,46 +101,72 @@
       </div>
     </div>
   </figure>
-  <div class="container py-md-16 p-0">
-    <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top">
+  <!-- content sebenarnya -->
+  <div class="starting-point">
+    <h6 class="display-4 mb-6 pe-xxl-6 fs-64 mb-5">Bhaskara</h6>
+    <p class="text-justify fs-30 lh-sm">
+      Seorang ayah muda, hidup dalam kondisi ekonomi yang tidak
+      menguntungkan.
+    </p>
+  </div>
+  <div class="sec-1">
+    <p class="description fs-24">
+      <span class="highlight fw-bold">Merawat orangtuanya yang menua</span> telah menguras sumber daya
+      finansialnya. Biaya medis yang tak kunjung habis membuatnya merasa
+      terjebak dalam utang yang bertambah besar.
+    </p>  
+  </div>
+
+  <div class="container py-md-16 d-flex" style="height: 500vh;">
+    <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
       <div class="col p-0">
       </div>
       <!--/column -->
-      <div class="col-lg-7">
-        <div class="starting-point">
-          <h6 class="display-4 mb-6 pe-xxl-6 fs-64 mb-5">Bhaskara</h6>
-          <p class="text-justify fs-30 lh-sm">
-            Seorang ayah muda, hidup dalam kondisi ekonomi yang tidak
-            menguntungkan.
-          </p>
-        </div>
-        <ul class="progress-list mt-3">
-          <li>
-            <p class="description">
-              Bhaskara hidup dalam kondisi ekonomi yang tidak menguntungkan,
-              merawat orangtuanya yang menua telah menguras sumber daya
+      <div class="col-lg-7 align-item-center">
+        <div class="start-animate"></div>
+        <!-- <ul class="progress-list mt-3">
+          <li class="sec">
+            <p class="description fs-24">
+              <span class="highlight fw-bold">Merawat orangtuanya yang menua</span> telah menguras sumber daya
               finansialnya. Biaya medis yang tak kunjung habis membuatnya merasa
-              terjebak dalam utang yang bertambah besar. Selain itu, biaya
-              pendidikan anak-anaknya semakin membuatnya gelisah karena tidak
-              tahu bagaimana akan mencukupinya. Kondisi ini semakin diperburuk
-              dengan penyesuaian jam kerja yang harus ia lakukan untuk merawat
-              keluarganya. Penghasilannya semakin mengecil, dan ia merasa
-              seperti terperangkap dalam lingkaran yang tak berujung dari
-              masalah keuangan.
+              terjebak dalam utang yang bertambah besar.
             </p>
             <div class="progressbar line blue" data-value="100" />
           </li>
-          <li>
-            <p class="description">
-              Namun, kendati terpuruk, Bhaskara tetap berusaha dengan segala
-              cara untuk menjaga keluarganya tetap berjalan. Ia tahu bahwa cinta
-              dan komitmen yang ia miliki terhadap keluarganya adalah kekuatan
-              yang bisa membantu mereka melalui masa-masa sulit ini. Meskipun
-              suasana bisa gelap, ia tetap mencari jalan untuk keluar dan
-              mencari bantuan yang diperlukan untuk mengatasi tantangan
-              ekonominya.
+          <li class="sec">
+            <p class="description fs-24">
+             Selain itu, <span class="highlight fw-bold">biaya
+             pendidikan anak-anaknya</span> semakin membuatnya gelisah karena tidak
+             tahu bagaimana akan mencukupinya. 
             </p>
             <div class="progressbar line yellow" data-value="80" />
+          </li>
+          <li>
+            <p class="description fs-24">
+              Kondisi ini semakin diperburuk
+              dengan penyesuaian jam kerja yang harus ia lakukan untuk <span class="highlight fw-bold">merawat
+              keluarganya</span>. 
+              Penghasilannya semakin mengecil, dan ia merasa
+              seperti <span class="highlight fw-bold">terperangkap</span>
+              dalam lingkaran yang tak berujung dari
+              masalah keuangan.
+            </p>
+          </li>
+          <li>
+            <p class="description fs-24">
+              Namun, kendati terpuruk, Bhaskara <span class="highlight fw-bold">tetap berusaha</span> dengan segala
+              cara untuk menjaga keluarganya tetap berjalan. Ia tahu bahwa cinta
+              dan komitmen yang ia miliki terhadap keluarganya adalah kekuatan
+              yang bisa membantu mereka melalui masa-masa sulit ini.
+            </p>
+          </li>
+          <li>
+            <p class="description fs-24">
+              Meskipun
+              suasana bisa gelap, ia tetap mencari <span class="highlight fw-bold">jalan untuk keluar</span> dan
+              mencari bantuan yang diperlukan untuk mengatasi tantangan
+              <span class="highlight fw-bold">ekonominya</span>.
+            </p>
           </li>
           <li>
             <p class="text-center">
@@ -105,18 +178,16 @@
               <b>Atau bahkan, kalian bernasib sama dengan Mardiansah ?. </b>
             </p>
             <div class="progressbar line orange" data-value="85" />
-          </li>
-          <li>
             <p class="text-center">
               Ya. Mardiansah adalah satu dari sekian banyak <span
-                class="hightlight"
+                class="highlight"
               >
                 generasi sandwich</span
               > di Indonesia.
             </p>
             <div class="progressbar line green" data-value="90" />
-          </li>
-        </ul>
+          </li> 
+        </ul> -->
         <!-- /.progress-list -->
       </div>
       <!--/column -->
@@ -143,11 +214,33 @@
 
 <style>
 /* CSS */
+/* html {
+  scroll-behavior: smooth;
+} */
 .person {
   position: fixed;
   bottom: 0%;
   left: 10%;
+  top: 200%;
   transform: scale(2) translate(0, 35%);
+}
+.starting-point {
+  overflow: hidden;
+  position: fixed;
+  padding-right: 10%;
+  width: 60%;
+  top: 20% !important;
+  left: 40%!important;
+}
+div[class*=sec] {
+  position: fixed;
+  padding-right: 10%;
+  width: 60%;
+  top: 50% !important;
+  left: 40%!important;
+}
+.container {
+  overscroll-behavior: none;
 }
 .talk-bubble {
   margin-left: 0px;
@@ -181,11 +274,12 @@
     border-color: lightcoral lightcoral transparent transparent;
   }
 
-.hightlight {
+.highlight {
   background: #45C4A0;
   color: white;
   padding: 6px;
   border-radius: 10px;
+  white-space: nowrap;
 }
 /* talk bubble contents */
 .talktext{
