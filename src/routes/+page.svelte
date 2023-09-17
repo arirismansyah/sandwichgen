@@ -23,19 +23,15 @@
 
   onMount(() => {
     loadJS();
-    //bg sound
-    // let sound = new Sound(bg_music);
-    // sound.play();
 
     const tl = gsap.timeline();
     gsap.registerPlugin(ScrollTrigger);
-    const factor = 10;
+    const factor = 8;
 
-    // gsap.set('.description', { autoAlpha: 0 });
-    // gsap.set('.starting-point', { yPercent: -100 });
     gsap.set('.person', { top: '160%' });
 
     var sections = gsap.utils.toArray(".section");
+    gsap.set('.section', { autoAlpha: 0 })
 
     var largeTL = gsap.timeline({
       scrollTrigger: { 
@@ -51,85 +47,62 @@
     sections.forEach(function(elem,i) {
 
       gsap.set(".section", {zIndex: (i, target, targets) => targets.length - i});    
-
       // select the relevant elements  
       var li = elem.querySelectorAll("li");
       // var second = elem.querySelectorAll(".lines.second");
-
-      const tldelay = i * factor;  
+      const tldelay = i > 0 ? i*factor+2 : i;  
       const tweenduration = 1/20 * factor  // -->  1/cumulated duration of all tweens here * factor
-      
       var bgTimeline = gsap.timeline()
-      bgTimeline
+
+      if (elem.id == "first-section") {
+        bgTimeline
+        .to(elem, { autoAlpha: 1, duration: tweenduration })
         .to(".person", {top: '70%', ease: "power1", duration: tweenduration/2})
-
         // .from('.person-bubble', {autoAlpha: 0, duration: tweenduration})
-
         .from('.starting-point', {yPercent: -110, duration: tweenduration, ease:'power2.inOut'})
-
         .to({}, {duration: tweenduration/2 }) // a little pause in between
-
         .to('.starting-point', {yPercent: 120, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 })
-
         // bubble dan gambar
         .to('.person', {top: '30%', left: '0%', scale: 1.5, duration: tweenduration})
-
         // .to('.person-bubble', {autoAlpha: 0, duration: tweenduration})
         // .to({}, {duration: tweenduration/2 })
-
         .from('.description.pt-1', {yPercent: -110, duration: tweenduration, ease:'power2.inOut'})
-
         .to({}, {duration: tweenduration }) // a little pause in between
-
         .to('.description.pt-1', {yPercent: 110, duration: tweenduration, ease:'power2.inOut'})
-
         .to({}, {duration: tweenduration }) // a little pause in between
-
         .from('.description.pt-2', {yPercent: -110, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 }) // a little pause in between
-
         .to('.description.pt-2', {yPercent: 110, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 }) // a little pause in between
-
         .from('.description.pt-3', {yPercent: -120, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 })
-
         .to('.description.pt-3', {yPercent: 120, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 })
-
         .from('.description.pt-4', {yPercent: -110, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 })
-
         .to('.description.pt-4', {yPercent: 110, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 })
-
         // content-3
         .to('.person', {yPercent:-35, xPercent:-15, scale: 0.8, duration: tweenduration})
         .to({}, {duration: tweenduration/2 })
-
         .from('.description.pt-5', {yPercent: -110, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 })
-
         .to('.description.pt-5', {yPercent: 110, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration/2 })
-
         .from('.description.pt-6', {yPercent: -120, duration: tweenduration, ease:'power2.inOut'}) 
-
-        .to({}, {duration: tweenduration });
+        .to({}, {duration: tweenduration/2 })
+        .to(elem, { autoAlpha: 0, duration: tweenduration })
+        .to({}, {duration: tweenduration })
+      }
+      else if (elem.id == "intro-funfact-section") {
+        bgTimeline
+        .to(elem, { autoAlpha: 1, duration: tweenduration })
+        .from(".funfact-bot", {yPercent: 100, ease: "expo", duration: tweenduration})
+        .to({}, {duration: tweenduration })
+      }
 
       largeTL.add(bgTimeline, tldelay);
-      //largeTL.add(smallTL, tldelay - (tldelay*tweenduration));
-
     })
 
 
@@ -161,7 +134,7 @@
 </svelte:head>
 
 <section class="wrapper bg-light">
-  <div class="section">
+  <div class="section" id="first-section">
     <figure>
       <img
         id="person"
@@ -176,7 +149,6 @@
         </div>
       </div> -->
     </figure>
-    <!-- content sebenarnya -->
 
     <div class="container py-md-16 d-flex" id="container">
       <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
@@ -253,6 +225,23 @@
     </div>
     <!-- /.container -->
   </div>
+
+  <div class="section" id="intro-funfact-section">
+    <figure>
+      <img
+        id="funfact-bot"
+        class="w-auto mt-0 funfact-bot"
+        src="/images/illustration/funfact_bot.png"
+        srcset="/images/illustration/funfact_bot.png"
+        alt=""
+      />
+      <!-- <div class="talk-bubble tri-right round btm-right person-bubble">
+        <div class="talktext">
+          <p class="text-center">Hai!, Saya Bhaskara</p>
+        </div>
+      </div> -->
+    </figure>
+  </div>
 </section>
 
 <!-- /section -->
@@ -319,34 +308,20 @@ section {
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
+#funfact-bot {
+  position: fixed;
+  left: 10%;
+  top: 42%;
+  /* top: 100%; */
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
 div[class*=sec] {
   position: fixed;
   padding-right: 10%;
   /* color: white; */
   padding: 15px;
   border-radius: 10px;
-}
-
-.sec-1 {
-  width: 20%;
-  top: 10% !important;
-  left: 30%!important;
-  line-height: 25px;
-  background: #45C4A0;
-}
-.sec-2 {
-  width: 40%;
-  top: 10% !important;
-  left: 51%!important;
-  background: #FAB757;
-  line-height: 25px;
-}
-.sec-3 {
-  width: 40%;
-  top: 25% !important;
-  left: 51%!important;
-  background: #FAB757;
-  line-height: 25px;
 }
 .container {
   /* overscroll-behavior: none; */

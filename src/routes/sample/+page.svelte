@@ -22,87 +22,87 @@
       loadJS();
       gsap.registerPlugin(ScrollTrigger);
   
-        console.clear();
+    console.clear();
+    
+    const factor = 2
+    
+    gsap.set('.center', {xPercent:-50, yPercent:-50})
+    gsap.set('section', { autoAlpha: 0 })
+    
+    
+    
+    var sections = gsap.utils.toArray("section:not(.end)");
+    
+    var largeTL = gsap.timeline({
+        scrollTrigger: { 
+        trigger: '.wrap-all',
+        pin: true,
+        scrub: 0.5,
+        start: "top top",
+        end: "+=" + (sections.length * 100 * factor) + "%",
+        //   markers: true
+        },
+    })
+    
+    sections.forEach(function(elem,i) {
+    
+        gsap.set("section", {zIndex: (i, target, targets) => targets.length - i});    
+    
+        // select the relevant elements  
+        var lines = elem.querySelectorAll(".lines");
+    
+        var first = elem.querySelectorAll(".lines.first");
+        var second = elem.querySelectorAll(".lines.second");
+    
+        const tldelay = i * factor;  
+        const tweenduration = 1/13 * factor  // -->  1/cumulated duration of all tweens here * factor
+    
+        var smallTL = gsap.timeline()
+    
+        smallTL
         
-        const factor = 2
+        .to(elem, { autoAlpha: 1, duration: tweenduration })
         
-        gsap.set('.center', {xPercent:-50, yPercent:-50})
-        gsap.set('section', { autoAlpha: 0 })
+        .from(first, {xPercent: -100, duration: tweenduration*2, ease:'power2.inOut'}) 
         
+        .to({}, {duration: tweenduration }) // a little pause in between
         
+        .to(first, {xPercent: 100, duration: tweenduration*2, ease:'power2.inOut'}) 
         
-        var sections = gsap.utils.toArray("section:not(.end)");
+        .to({}, {duration: tweenduration/2 }) // a little pause in between
         
-        var largeTL = gsap.timeline({
-            scrollTrigger: { 
-            trigger: '.wrap-all',
-            pin: true,
-            scrub: 0.5,
-            start: "top top",
-            end: "+=" + (sections.length * 100 * factor) + "%",
-            //   markers: true
-            },
-        })
+        .from(second, {xPercent: -100, duration: tweenduration*2, ease:'power2.inOut'}) 
         
-        // sections.forEach(function(elem,i) {
+        .to({}, {duration: tweenduration/2 }) // a little pause in between
         
-        //     gsap.set("section", {zIndex: (i, target, targets) => targets.length - i});    
+        .to(second, {xPercent: 100, duration: tweenduration*2, ease:'power2.inOut'}) 
         
-        //     // select the relevant elements  
-        //     var lines = elem.querySelectorAll(".lines");
-        
-        //     var first = elem.querySelectorAll(".lines.first");
-        //     var second = elem.querySelectorAll(".lines.second");
-        
-        //     const tldelay = i * factor;  
-        //     const tweenduration = 1/13 * factor  // -->  1/cumulated duration of all tweens here * factor
-        
-        //     var smallTL = gsap.timeline()
-        
-        //     smallTL
-            
-        //     .to(elem, { autoAlpha: 1, duration: tweenduration })
-            
-        //     .from(first, {xPercent: -100, duration: tweenduration*2, ease:'power2.inOut'}) 
-            
-        //     .to({}, {duration: tweenduration }) // a little pause in between
-            
-        //     .to(first, {xPercent: 100, duration: tweenduration*2, ease:'power2.inOut'}) 
-            
-        //     .to({}, {duration: tweenduration/2 }) // a little pause in between
-            
-        //     .from(second, {xPercent: -100, duration: tweenduration*2, ease:'power2.inOut'}) 
-            
-        //     .to({}, {duration: tweenduration/2 }) // a little pause in between
-            
-        //     .to(second, {xPercent: 100, duration: tweenduration*2, ease:'power2.inOut'}) 
-            
-        //     .to(elem, { autoAlpha: 0, duration: tweenduration })
-        
-        //     .to({}, {duration: tweenduration}) // a little pause at the end
-        
-        //     ;
-        
-        //     largeTL.add(smallTL, tldelay);
-        //     //largeTL.add(smallTL, tldelay - (tldelay*tweenduration));
+        .to(elem, { autoAlpha: 0, duration: tweenduration })
+    
+        .to({}, {duration: tweenduration}) // a little pause at the end
+    
+        ;
+    
+        largeTL.add(smallTL, tldelay);
+        //largeTL.add(smallTL, tldelay - (tldelay*tweenduration));
   
-        //   })
-        
-        
-        
-        //   var endTL = gsap.timeline({
-        //     scrollTrigger: { 
-        //       trigger: '.trigger',
-        //       pin: '.wrap-all',
-        //       scrub: 0.5,
-        //       start: "top top-=" + (sections.length * 100 * factor) + "%",
-        //       end: "+=" + 10 * factor + "%"
-        //     },
-        //   })
-        
-        //   endTL
-        
-        //   .to('section.end', { autoAlpha: 1, duration: 1 * factor })
+  })
+  
+  
+  
+  var endTL = gsap.timeline({
+    scrollTrigger: { 
+      trigger: '.trigger',
+      pin: '.wrap-all',
+      scrub: 0.5,
+      start: "top top-=" + (sections.length * 100 * factor) + "%",
+      end: "+=" + 10 * factor + "%"
+    },
+  })
+  
+  endTL
+  
+  .to('section.end', { autoAlpha: 1, duration: 1 * factor })
   
   //.to('section.end', { autoAlpha: 1, duration: 0.5 * factor })
   //.to({}, { duration: 1 * factor })
