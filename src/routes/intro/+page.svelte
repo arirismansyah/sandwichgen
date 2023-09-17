@@ -6,7 +6,7 @@
   // import svelte
   import { onMount } from "svelte";
   import Saos from "saos";
-  import { bounceOut } from "svelte/easing";
+  import { bounceOut, sineOut } from "svelte/easing";
   import { fly } from "svelte/transition";
 
   //   import gsap
@@ -90,7 +90,7 @@
       ".content-bg1",
       { opacity: 0, duration: 0.5, y: "-20%" },
       {
-        ease: bounceOut,
+        ease: sineOut,
         duration: 0.5,
         y: "0",
         position: "fixed",
@@ -116,12 +116,12 @@
       .fromTo(
         ".sec2-elem1",
         { opacity: 0, duration: 0.2, y: "-20%" },
-        { ease: bounceOut, duration: 0.5, y: "100%", opacity: 1 }
+        { ease: sineOut, duration: 0.5, y: "100%", opacity: 1 }
       )
       .fromTo(
         ".sec2-elem2",
         { opacity: 0, duration: 0.5, y: "-20%" },
-        { ease: bounceOut, duration: 0.5, y: "100%", opacity: 1 }
+        { ease: sineOut, duration: 0.5, y: "100%", opacity: 1 }
       );
 
     tl_3
