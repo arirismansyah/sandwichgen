@@ -39,7 +39,8 @@
       pin: true,
       scrub: 0.5,
       start: "top top",
-      end: "+=" + (sections.length * 100 * factor) + "%"
+      end: "+=" + (sections.length * 100 * factor) + "%",
+      markers: true
     },
   })
   
@@ -200,7 +201,6 @@
     font-size: 4vw;
     margin:0;
   }
-  
   .wrap-all {
     min-height: 100vh;
   }
