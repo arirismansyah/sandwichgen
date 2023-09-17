@@ -1,10 +1,10 @@
 <script>
   import FloatNav from "../components/nav/FloatNav.svelte";
+  import TrendChart from "../components/charts/Trend.svelte";
   import { onMount } from "svelte";
   import gsap from "gsap";
   import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
-  import {Sound, sound} from 'svelte-sound';
-  // import bg_music from '/assets_template/sound.mp3'
+  import SplitType from "split-type";
 
   const loadJS = () => {
     const pluginsJS = document.createElement("script");
@@ -21,17 +21,21 @@
     }, 100);
   };
 
+  let showHighlight=false;
+
   onMount(() => {
     loadJS();
-
-    const tl = gsap.timeline();
+    const splitType = new SplitType('#funfact-title');
+    // const splitType = new SplitType("");
+    // gsap animation
     gsap.registerPlugin(ScrollTrigger);
     const factor = 8;
 
     gsap.set('.person', { top: '160%' });
+    gsap.set('.trend-chart', { autoAlpha: 0 });
 
     var sections = gsap.utils.toArray(".section");
-    gsap.set('.section', { autoAlpha: 0 })
+    gsap.set('.section', { autoAlpha: 1 })
 
     var largeTL = gsap.timeline({
       scrollTrigger: { 
@@ -99,7 +103,23 @@
         bgTimeline
         .to(elem, { autoAlpha: 1, duration: tweenduration })
         .from(".funfact-bot", {yPercent: 100, ease: "expo", duration: tweenduration})
-        .to({}, {duration: tweenduration })
+        .to({}, {duration: tweenduration/2 })
+        .from('#funfact-title .word', {yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
+        .to({}, {duration: tweenduration/2 })
+        .to("#funfact-title .word", {autoAlpha:0, duration: tweenduration/2})
+        .to(".funfact-bot", {yPercent: -100, xPercent: 70, ease: "power1.inOut", scale: 0.4, rotationY: 360, rotationX: 360, duration: tweenduration*4})
+        .to({}, {duration: tweenduration/2 })
+        .to('.trend-chart', {autoAlpha: 1, duration: tweenduration})
+        .from('#chart-desc p', {xPercent: -110, duration:tweenduration, onComplete: () => {
+          showHighlight = true;
+        }, onReverseComplete: () => {
+          showHighlight= false;
+        }})
+        .to({}, {duration: tweenduration/2 })
+        .to('.trend-chart', {autoAlpha: 0, duration: tweenduration})
+        .to({}, {duration: tweenduration/2 })
+        .from('.word-text', {yPercent: -500, duration: tweenduration})
+        .from('.wordcloud-desc p', {xPercent: 110, duration: tweenduration})
       }
 
       largeTL.add(bgTimeline, tldelay);
@@ -217,13 +237,9 @@
               </p>
             </li>
           </ul>
-          <!-- /.progress-list -->
         </div>
-        <!--/column -->
       </div>
-      <!--/.row -->
     </div>
-    <!-- /.container -->
   </div>
 
   <div class="section" id="intro-funfact-section">
@@ -241,6 +257,46 @@
         </div>
       </div> -->
     </figure>
+    <div class="container py-md-16 d-flex" id="container">
+      <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
+        <div class="col-12 align-item-center">
+          <div class="funfact-question text-center">
+            <p class="fs-56 pt-5 text-center" id="funfact-title">
+              Apakah <b>Sandwich Generation</b> <br> menjadi concern di Indonesia?
+            </p>
+          </div>
+          <div class="trend-chart row justify-content-end">
+            <div class="col-6">
+              <TrendChart isHighlight={showHighlight}/>
+            </div>
+            <div class="col-6" id="chart-desc">
+              <p class="fs-24 pt-5 text-justify">
+                Pencarian keyword <q>generasi sandwich</q> mulai <span class="highlight">meningkat di tahun 2020</span> hingga saat ini, 
+                menunjukkan <span class="highlight">peningkatan atensi masyarakat</span> terhadap adanya generasi sandwich di Indonesia.
+              </p>
+            </div>
+          </div>
+          <div class="keyword-search fs-50">
+            <div class="wordcloud">
+              <p class="word-text">KESEHATAN</p>
+              <p class="word-text">Beban</p>
+              <p class="word-text">Keuangan</p>
+              <p class="word-text">Generasi Sandwich</p>
+              <p class="word-text">Tips</p>
+              <p class="word-text">Stop</p>
+              <p class="word-text">Putus</p>
+            </div>
+            <div class="wordcloud-desc">
+              <p class="fs-24 pt-5 text-justify">
+                Berdasarkan hasil pada <i><strong>Google Trend</strong></i>, kecenderungan atensi penduduk Indonesia terhadap generasi sandwich, diantaranya: 
+                terhadap isu <span class="highlight">keuangan</span>, <span class="highlight">kesehatan 
+                mental</span>, dan bagaimana  <span class="highlight">memutus rantai generasi sandwich</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -308,14 +364,6 @@ section {
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
-#funfact-bot {
-  position: fixed;
-  left: 10%;
-  top: 42%;
-  /* top: 100%; */
-  -webkit-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-}
 div[class*=sec] {
   position: fixed;
   padding-right: 10%;
@@ -327,6 +375,98 @@ div[class*=sec] {
   /* overscroll-behavior: none; */
   min-height: 100vh;
 }
+
+/* funfact */
+#funfact-bot {
+  position: fixed;
+  left: 20%;
+  top: 42%;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+.funfact-question {
+  position: fixed;
+  left: 10%;
+  top: 15%;
+  width: 80%;
+  overflow: hidden;
+}
+#funfact-title .line{
+  text-align: center;
+}
+#chart-desc {
+  position: fixed;
+  width: fit-content;
+  height: fit-content;
+  overflow: hidden!important;
+  left: 50%!important;
+  top: 25%;
+}
+#chart-desc p {
+  position: relative;
+  text-align: justify;
+  width: 80%;
+}
+
+/* Wordcloud */
+.wordcloud {
+  position: absolute;
+  top:15%;
+  left:10%;
+  height: fit-content;
+  width: fit-content;
+}
+.word-text {
+ position: relative;
+ padding: 0;
+ margin: 0;
+ text-transform: uppercase;
+ font-weight: 1000;
+}
+.word-text:nth-of-type(1) {
+  top: 10%;
+  font-size:90px;
+  color: #FF8E0E;
+}
+.word-text:nth-of-type(2) {
+  transform: rotate(90deg) translate(220px, 260px);
+  font-size:70px;
+  color: #EF5B16;
+}
+.word-text:nth-of-type(3) {
+  transform: translate(80px, -230px);
+  font-size:120px;
+  color: #45C3A0;
+}
+.word-text:nth-of-type(4) {
+  transform: translate(100px, -300px);
+  font-size:50px;
+  color: #FAB757
+}
+.word-text:nth-of-type(5) {
+  transform: translate(120px, -450px) rotate(315deg);
+  font-size:150px;
+  color: #833729;
+}
+.word-text:nth-of-type(6) {
+  transform: translate(100px, -570px);
+  font-size:60px;
+  color: #079E5F;
+}
+.word-text:nth-of-type(7) {
+  transform: translate(50px, -600px);
+  font-size:80px;
+  color: #73B0D6;
+}
+
+.wordcloud-desc {
+  position: absolute;
+  width: 40%;
+  top: 45%;
+  left: 50%;
+  overflow: hidden;
+}
+
 .talk-bubble {
   margin-left: 0px;
   left: 5%;
