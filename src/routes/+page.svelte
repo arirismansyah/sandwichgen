@@ -3,6 +3,8 @@
   import { onMount } from "svelte";
   import gsap from "gsap";
   import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
+  import {Sound, sound} from 'svelte-sound';
+  // import bg_music from '/assets_template/sound.mp3'
 
   const loadJS = () => {
     const pluginsJS = document.createElement("script");
@@ -21,6 +23,10 @@
 
   onMount(() => {
     loadJS();
+    //bg sound
+    // let sound = new Sound(bg_music);
+    // sound.play();
+
     const tl = gsap.timeline();
     gsap.registerPlugin(ScrollTrigger);
     const factor = 10;
@@ -33,12 +39,12 @@
 
     var largeTL = gsap.timeline({
       scrollTrigger: { 
-        trigger: '.container',
+        trigger: '.section',
         pin: true,
         scrub: 0.5,
         start: "top top",
         end: "+=" + (sections.length * 100 * factor) + "%",
-        markers: true
+        // markers: true
       },
     })
 
@@ -119,10 +125,6 @@
 
         .from('.description.pt-6', {yPercent: -120, duration: tweenduration, ease:'power2.inOut'}) 
 
-        .to({}, {duration: tweenduration/2 })
-
-        .to('.description.pt-6', {yPercent: 100, duration: tweenduration, ease:'power2.inOut'}) 
-
         .to({}, {duration: tweenduration });
 
       largeTL.add(bgTimeline, tldelay);
@@ -176,7 +178,7 @@
     </figure>
     <!-- content sebenarnya -->
 
-    <div class="container py-md-16 d-flex" style="height: 500vh;" id="container">
+    <div class="container py-md-16 d-flex" id="container">
       <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
         <div class="col p-0">
         </div>
@@ -260,19 +262,19 @@
 /* CSS */
 .content-3 {
   position: absolute;
-  top: 5%;
+  top: 20%;
   left: 50%;
   width: 100%;
 }
 .content-2 {
   position: absolute;
-  top: 4%;
+  top: 20%;
   left: 35%;
   width: 100%;
 }
 .content-1 {
   position: absolute;
-  top: 10%;
+  top: 40%;
   left: 45%;
   width: 100%;
 }
@@ -347,7 +349,8 @@ div[class*=sec] {
   line-height: 25px;
 }
 .container {
-  overscroll-behavior: none;
+  /* overscroll-behavior: none; */
+  min-height: 100vh;
 }
 .talk-bubble {
   margin-left: 0px;
