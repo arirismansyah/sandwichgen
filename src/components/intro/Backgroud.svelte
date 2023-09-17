@@ -9,7 +9,6 @@
 
 <style>
   .bg-image-1 {
-    position: fixed;
     top: 10%;
     left: 55%;
     transform: scale(0.8);
