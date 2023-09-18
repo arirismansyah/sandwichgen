@@ -9,7 +9,7 @@
     </li>
 
     <li class="nav-item pt-1 ph-4">
-      <a href="#" class="btn rounded-pill">
+      <a href="/intro" class="btn rounded-pill">
         <img
           style="height: 20%;"
           src="/images/logo/sandwich_upper.svg"
@@ -31,7 +31,7 @@
     </li>
 
     <li class="nav-item pt-1 ph-4">
-      <a href="#" class="btn rounded-pill">
+      <a href="/generation" class="btn rounded-pill">
         <img
           style="height: 20%;"
           src="/images/logo/sandwich_lower.svg"
