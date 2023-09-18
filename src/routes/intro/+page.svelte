@@ -105,7 +105,7 @@
 
     const tl_3 = gsap.timeline({
       scrollTrigger: {
-        markers: "true",
+        // markers: "true",
         trigger: ".animate-sec3",
         start: "top bottom",
         end: "bottom center",
@@ -135,7 +135,7 @@
 
     const tl_6 = gsap.timeline({
       scrollTrigger: {
-        markers: "true",
+        // markers: "true",
         trigger: ".animate-sec5",
         start: "top bottom",
         end: "bottom center",
@@ -165,7 +165,7 @@
 
     const tl_9 = gsap.timeline({
       scrollTrigger: {
-        markers: "true",
+        // markers: "true",
         trigger: ".animate-sec8",
         start: "top bottom",
         end: "bottom center",
@@ -700,6 +700,8 @@
       </div>
     </div>
   </section>
+
+  <section class="wrapper" />
 
   <FloatNav />
 </div>
