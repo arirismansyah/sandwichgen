@@ -48,7 +48,7 @@
 
     const tl_1 = gsap.timeline({
       scrollTrigger: {
-        markers: "true",
+        // markers: "true",
         trigger: ".animate-sec1",
         start: "top bottom",
         end: "bottom center",
@@ -58,7 +58,7 @@
 
     const tl_2 = gsap.timeline({
       scrollTrigger: {
-        markers: "true",
+        // markers: "true",
         trigger: ".animate-sec2",
         start: "top bottom",
         end: "bottom center",
@@ -78,7 +78,7 @@
 
     const tl_4 = gsap.timeline({
       scrollTrigger: {
-        markers: "true",
+        // markers: "true",
         trigger: ".animate-sec4",
         start: "top bottom",
         end: "bottom center",
@@ -88,11 +88,11 @@
 
     const tl_5 = gsap.timeline({
       scrollTrigger: {
-        markers: "true",
-        trigger: ".animate-sec5",
+        // markers: "true",
+        trigger: "#sec5",
         start: "top bottom",
         end: "bottom center",
-        toggleActions: "restart none reverse reverse",
+        toggleActions: "restart restart none reverese",
       },
     });
 
@@ -100,6 +100,36 @@
       scrollTrigger: {
         markers: "true",
         trigger: ".animate-sec5",
+        start: "top bottom",
+        end: "bottom center",
+        toggleActions: "restart reverse complete reverse",
+      },
+    });
+
+    const tl_7 = gsap.timeline({
+      scrollTrigger: {
+        // markers: "true",
+        trigger: ".animate-sec6",
+        start: "center bottom",
+        end: "bottom center",
+        toggleActions: "restart reverse complete reverse",
+      },
+    });
+
+    const tl_8 = gsap.timeline({
+      scrollTrigger: {
+        // markers: "true",
+        trigger: ".animate-sec8",
+        start: "top bottom",
+        end: "bottom center",
+        toggleActions: "restart reverse complete reverse",
+      },
+    });
+
+    const tl_9 = gsap.timeline({
+      scrollTrigger: {
+        markers: "true",
+        trigger: ".animate-sec8",
         start: "top bottom",
         end: "bottom center",
         toggleActions: "restart reverse complete reverse",
@@ -118,21 +148,12 @@
       }
     );
 
-    tl_5.fromTo(
-      ".content-bg1",
-      {
-        ease: sineOut,
-        opacity: 0,
-        duration: 0.5,
-        y: "-20%",
-      },
-      {
-        ease: sineOut,
-        opacity: 1,
-        duration: 0.5,
-        y: "100%",
-      }
-    );
+    tl_5.to(".content-bg1", {
+      ease: sineOut,
+      opacity: 0,
+      duration: 0.5,
+      y: "-20%",
+    });
 
     tl_1
       .to("#sec1", { position: "fixed", top: 0, y: 0 })
@@ -179,6 +200,57 @@
         ".sec4-elem1",
         { opacity: 0, duration: 0.5 },
         { duration: 0.5, opacity: 1 }
+      );
+
+    tl_6
+      .to("#sec5", { position: "fixed", top: 0, y: 0 })
+      .fromTo(
+        "#sec5",
+        { opacity: 0, duration: 0.5 },
+        { duration: 0.5, opacity: 1 }
+      );
+
+    tl_7
+      .to("#sec6", { position: "fixed", top: 0, y: 0 })
+      .fromTo(
+        ".sec6-elem1",
+        { opacity: 0, duration: 0.5 },
+        { duration: 0.5, opacity: 1 }
+      )
+      .fromTo(
+        ".sec6-elem2",
+        { opacity: 0, duration: 0.5 },
+        { duration: 0.5, opacity: 1 }
+      )
+      .fromTo(
+        ".sec6-elem3",
+        { opacity: 0, duration: 0.5 },
+        { duration: 0.5, opacity: 1 }
+      );
+
+    tl_8.fromTo(
+      ".content-bg2",
+      { opacity: 0, duration: 0.5, y: "-20%" },
+      {
+        ease: sineOut,
+        duration: 0.5,
+        y: "0",
+        position: "fixed",
+        opacity: 1,
+      }
+    );
+
+    tl_9
+      .to("#sec8", { position: "fixed", top: 0, y: 0 })
+      .fromTo(
+        ".sec8-elem1",
+        { opacity: 0, duration: 0.5, y: "-20%" },
+        { duration: 0.5, y: "100%", opacity: 1 }
+      )
+      .fromTo(
+        ".sec8-elem2",
+        { opacity: 0, duration: 0.5, y: "-20%" },
+        { duration: 0.5, y: "100%", opacity: 1 }
       );
   });
 </script>
@@ -274,10 +346,8 @@
   <!-- definisi -->
   <section id="sec5" class="content container d-flex align-items-center">
     <div class="col animate-sec5">
-      <div class="row m-4">
+      <div id="sec5-elem1" class="row m-4">
         <div class="col-md-12">
-          <!-- definisi -->
-
           <div class="row text-left">
             <div class="card bg-soft-primary card-border-start border-primary">
               <div class="card-body">
@@ -291,21 +361,20 @@
               </div>
             </div>
           </div>
-
-          <!-- definisi -->
         </div>
       </div>
       <div class="row m-4">
         <div class="col-md-4">
-          <!-- image bhaskara -->
-          <figure class="content-illust1 bg-overlay bg-overlay-300">
+          <figure
+            id="sec5-elem2"
+            class="content-illust1 bg-overlay bg-overlay-300"
+          >
             <img src="/images/illustration/people1.png" alt="" />
           </figure>
-          <!-- image bhaskara -->
         </div>
         <div class="col-md-8 d-flex align-items-center">
-          <!-- avatar -->
           <div
+            id="sec5-elem3"
             class="row d-flex justify-content-around align-items-center counter-wrapper gy-6 text-center"
           >
             <div class="col-sm-3">
@@ -320,7 +389,7 @@
                 </div>
               </div>
             </div>
-            <!--/column -->
+
             <div class="col-sm-3">
               <div class="card">
                 <div class="card-body col shadow-lg text-center">
@@ -337,7 +406,7 @@
                 </div>
               </div>
             </div>
-            <!--/column -->
+
             <div class="col-sm-3">
               <div class="card">
                 <div class="card-body col shadow-lg text-center">
@@ -350,9 +419,7 @@
                 </div>
               </div>
             </div>
-            <!--/column -->
           </div>
-          <!-- avatar -->
         </div>
       </div>
     </div>
@@ -360,8 +427,8 @@
   <!-- definisi -->
 
   <section id="sec6" class="content container d-flex align-items-center">
-    <div class="row">
-      <div class="col-lg-6">
+    <div class="row animate-sec6">
+      <div class="col-lg-6 sec6-elem1">
         <img
           class="img-fluid"
           src="/images/illustration/people_sandwich_illustration.png"
@@ -369,7 +436,7 @@
           alt=""
         />
       </div>
-      <div class="col-lg-6 d-flex align-items-center ml-4">
+      <div class="col-lg-6 d-flex align-items-center ml-4 sec6-elem2">
         <div class="row">
           <div class="col-md-10">
             <h3 class="fs-28 m-4">Generasi Sandwich</h3>
@@ -456,7 +523,7 @@
   }
 
   .bg-image-2 {
-    position: fixed;
+    /* position: fixed; */
     top: 10%;
     right: 55%;
     transform: scale(1);
