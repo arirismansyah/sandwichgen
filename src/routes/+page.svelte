@@ -3,6 +3,7 @@
   import TrendChart from "../components/charts/Trend.svelte";
   import PiramidChart from "../components/charts/Piramid.svelte";
   import TPAKChart from "../components/charts/TPAK.svelte";
+  import ProporsiChart from "../components/charts/Proporsi.svelte";
   import { onMount } from "svelte";
   import gsap from "gsap";
   import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
@@ -17,6 +18,7 @@
     themeJS.setAttribute("src", "/assets_template/js/theme.js");
     document.head.appendChild(themeJS);
 
+    
     setTimeout(() => {
       theme.init();
       TyperSetup();
@@ -30,11 +32,13 @@
     loadJS();
     new SplitType('#funfact-title');
     new SplitType("#ina-title");
+    new SplitType("#wording-title");
     // gsap animation
     gsap.registerPlugin(ScrollTrigger);
     const factor = 8;
 
     gsap.set('.person', { top: '160%' });
+    gsap.to(".person", {top: '70%', ease: "power1", duration: 1})
     gsap.set('.trend-chart', { autoAlpha: 0 });
 
     var sections = gsap.utils.toArray(".section");
@@ -50,6 +54,7 @@
         // markers: true
       },
     })
+    document.getElementById('wrapper-parent').style.opacity = 1;
 
     sections.forEach(function(elem,i) {
 
@@ -64,7 +69,7 @@
       if (elem.id == "first-section") {
         bgTimeline
         .to(elem, { autoAlpha: 1, duration: tweenduration })
-        .to(".person", {top: '70%', ease: "power1", duration: tweenduration/2})
+        .to(".talk-bubble", {autoAlpha: 0, ease: "power1", duration: tweenduration/2})
         // .from('.person-bubble', {autoAlpha: 0, duration: tweenduration})
         .from('.starting-point', {yPercent: -110, duration: tweenduration, ease:'power2.inOut'})
         .to({}, {duration: tweenduration/2 }) // a little pause in between
@@ -221,7 +226,24 @@
           .to({}, {duration: tweenduration })
           .to('#nonoffstat-section .row', {yPercent: -110, autoAlpha: 0, duration: tweenduration, ease: 'power2.inOut'})
           .to('#nonoffstat-conclude', {yPercent: 110, autoAlpha: 0, duration: tweenduration, ease: 'power2.inOut'})
-          
+      } else if (elem.id == 'conclussion-section') {
+        bgTimeline
+          .from('#jugling-people', {yPercent: 110, ease: 'power1.inOut', duration:tweenduration})
+          .to({}, {duration: tweenduration})
+          .from('#wording-title .word', {autoAlpha: 0, yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
+          .to({}, {duration: tweenduration})
+          .to('#jugling-people', {yPercent: 110, ease: 'power1.inOut', duration:tweenduration})
+          .to('#wording-title .word', {autoAlpha: 0, yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
+          .from('.conclussion-end', {autoAlpha: 0, duration: tweenduration})
+          .from('.chartexplain', {autoAlpha: 0, yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
+          .to({}, {duration: tweenduration})
+          .to('.conclussion-end', {autoAlpha: 0, duration: tweenduration})
+          .to('.chartexplain', {autoAlpha: 0, delay: 0.05, duration: tweenduration})
+          .to({}, {duration: tweenduration})
+          .from('.conclusion-content', {autoAlpha: 0, yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
+          .to({}, {duration: tweenduration})
+          .to('.conclusion-content', {autoAlpha: 0, yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
+          .from('.thank-you ', {autoAlpha: 0, yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
       }
 
 
@@ -234,6 +256,8 @@
         largeTL.add(bgTimeline, 20.5);
       } else if (elem.id == 'nonoffstat-section') {
         largeTL.add(bgTimeline, 31);
+      } else if (elem.id == 'conclussion-section') {
+        largeTL.add(bgTimeline, 34);
       }
       else {
         largeTL.add(bgTimeline, tldelay);
@@ -268,7 +292,7 @@
   />
 </svelte:head>
 
-<section class="wrapper bg-light">
+<section class="wrapper bg-light" id="wrapper-parent">
   <div class="section" id="first-section">
     <figure>
       <img
@@ -278,11 +302,13 @@
         srcset="/images/illustration/people1_1x.png"
         alt=""
       />
-      <!-- <div class="talk-bubble tri-right round btm-right person-bubble">
+      <div class="talk-bubble tri-right round btm-right person-bubble">
         <div class="talktext">
-          <p class="text-center">Hai!, Saya Bhaskara</p>
+          <p class="text-center">Hai!, Saya Bhaskara gunakan scroll bawah sebagai navigasi
+            menggunakan browser chrome dan layar medium 1440 x 758 untuk pengalaman terbaik
+          </p>
         </div>
-      </div> -->
+      </div>
     </figure>
 
     <div class="container py-md-16 d-flex" id="">
@@ -571,12 +597,92 @@
       </div>
     </div>
   </div>
+
+  <!-- conclussion -->
+  <div class="section" id="conclussion-section">
+    <figure>
+      <img
+        id="jugling-people"
+        class="w-auto mt-0 jugling-people"
+        src="/images/illustration/jugling.png"
+        srcset="/images/illustration/jugling.png"
+        alt=""
+      />
+    </figure>
+    <div class="container">
+      <div class="row align-item-center" style="height: 100vh!important">
+          <div class="col-12">
+            <p class="fs-56 fw-bolder text-center mt-22 text-success wording-title" id="wording-title">
+              Mempersiapkan <span class="text-warning">Generasi Emas 2045</span>
+            </p>
+        </div>
+        <div class="conclussion-end col-6">
+          <ProporsiChart/>
+        </div>
+        <div class="col-6">
+          <div class="chartexplain fs-20">
+            Hingga tahun 2045, mayoritas penduduk Indonesia masih merupakan penduduk usia produktif, yang menunjukkan Indonesia masih berada pada periode Bonus Demografi 
+            Dengan memanfaatkan bonus demografi sebaik-baiknya, maka <strong class="highlight">Indonesia Maju 2045</strong> bukanlah sesuatu yang mustahil untuk dicapai.
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="conclusion-content fs-18">
+            Memutus mata rantai sandwich generation merupakan salah satu upaya untuk mewujudkan Generasi <strong class="highlight">Indonesia Maju 2045</strong>.
+
+            Bagi individu, sandwich generation dapat menimbulkan stres, kelelahan, dan bahkan depresi. Bagi masyarakat, sandwich generation dapat menghambat pertumbuhan ekonomi dan pembangunan sosial.
+
+            Untuk memutus mata rantai sandwich generation, diperlukan upaya dari berbagai pihak, baik pemerintah, swasta, maupun masyarakat. 
+            
+            <ul class="icon-list bullet-bg bullet-soft-violet">
+              <li class="fw-bold">
+                <i class="uil uil-check" />
+                Pemerintah dapat memberikan kebijakan yang mendukung peningkatan kesejahteraan generasi milenial, seperti subsidi pendidikan dan kesehatan, serta pemberian jaminan sosial.
+              </li>
+              <li class="fw-bold">
+                <i class="uil uil-check" />
+                Swasta dapat memberikan kesempatan kerja dan pelatihan yang berkualitas bagi generasi milenial.
+              </li>
+              <li class="fw-bold">
+                <i class="uil uil-check" />
+                Masyarakat dapat meningkatkan kesadaran akan pentingnya perencanaan keuangan dan persiapan masa depan.
+              </li>
+            </ul>
+          </div>
+          <div class="thank-you text-success fs-120 fw-bolder">Terima kasih!</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </section>
 
 <!-- /section -->
 <FloatNav />
 
 <style>
+  section {
+    opacity: 0;
+  }
+  .conclusion-content {
+    position: fixed;
+    width: 70%;
+    left: 15%;
+    top: 20%;
+    text-align: justify;
+  }
+  .chartexplain {
+    position: fixed;
+    top: 30%;
+    width: 40%;
+    right: 15%;
+    text-align: justify;
+    text-indent: 50px;
+  }
+  .conclussion-end {
+    position: absolute;
+    top: 10%;
+    height: 100vh!important;
+  }
 
 #nonoffstat-section .nn-1 p{
     color: whitesmoke;
@@ -666,7 +772,7 @@
   left: 45%;
   width: 100%;
 }
-li {
+.progress-list li {
   overflow: hidden;
   position: absolute;
   padding-right: 10%;
@@ -728,6 +834,14 @@ div[class*=sec] {
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
+#jugling-people {
+  position: fixed;
+  transform: scale(0.5);
+  left: 15%;
+  top: 10%;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
 .funfact-question, .ina-question {
   position: fixed;
   left: 10%;
@@ -735,7 +849,7 @@ div[class*=sec] {
   width: 80%;
   overflow: hidden;
 }
-#funfact-title .line, #ina-title .line{
+#funfact-title .line, #ina-title .line, #wording-title .line{
   text-align: center;
 }
 #chart-desc {
@@ -856,7 +970,7 @@ div[class*=sec] {
 .talk-bubble {
   margin-left: 0px;
   left: 5%;
-  bottom: 70% !important;
+  bottom: 60% !important;
   display: inline-block;
   position: fixed;
 	width: 250px;
@@ -898,6 +1012,7 @@ div[class*=sec] {
 }
 .talktext p{
   /* remove webkit p margins */
+  text-align: justify;
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
 }

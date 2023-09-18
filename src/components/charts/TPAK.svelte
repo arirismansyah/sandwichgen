@@ -4,8 +4,8 @@
     import {Chart} from "svelte-echarts";
     const options = {
     title: {
-        // text: 'Persentase Angkatan Kerja Terhadap Penduduk Usia Kerja (TPAK)',
-        // subtext: 'Agustus 2022 (persen)'
+        text: 'Persentase Angkatan Kerja Terhadap Penduduk Usia Kerja (TPAK)',
+        subtext: 'Agustus 2022 (persen)'
     },
     tooltip: {
         trigger: 'axis',

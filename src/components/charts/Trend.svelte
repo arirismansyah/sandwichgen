@@ -7,7 +7,7 @@
     const options = {
     animationDuration: 0,
     title: {
-        // text: 'Pencarian keyword "Sandwich Generation"'
+        text: 'Pencarian keyword "Sandwich Generation"'
     },
     tooltip: {
         trigger: 'axis'
