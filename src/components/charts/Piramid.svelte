@@ -1,5 +1,6 @@
 
 <script>
+    export let counter = 0;
     import {Chart} from "svelte-echarts";
     const options = {
         title: {
@@ -115,11 +116,10 @@
     }
   ]
 };
-    let count = 0;
 </script>
     <div class="piramid">
-        {#key count}
-        <Chart {options} key={count}/>
+        {#key counter}
+        <Chart {options} key={counter}/>
         <p class="piramid-desc fs-18 text-justify">
             Proporsi Penduduk Indonesia Tahun 2022
             <span class="highlight">Lebih dari 30% penduduk Indonesia</span> 
