@@ -24,6 +24,7 @@
   };
 
   let showHighlight=false;
+  let count=false;
 
   onMount(() => {
     loadJS();
@@ -123,10 +124,10 @@
         .from('.word-text', {yPercent: -500, duration: tweenduration})
         .from('.wordcloud-desc p', {xPercent: 110, duration: tweenduration, stagger: 0.05, delay: 0.05})
         .to({}, {duration: tweenduration/2 })
-        .to(elem, { autoAlpha: 0, duration: tweenduration })
+        .to(elem, { autoAlpha: 0, duration: tweenduration/2 })
       } else if (elem.id = 'intro-funfact-section') {
         bgTimeline
-        .to(elem, { autoAlpha: 1, duration: tweenduration })
+        .to(elem, { autoAlpha: 1, duration: tweenduration/2 })
         .from('#ina-title .word', {yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
         .from('#people-walk', {xPercent: 110, ease: "expo", duration: tweenduration })
         .from('.question-mark div', {yPercent: 110, ease: "expo", duration: tweenduration })
@@ -135,8 +136,10 @@
           gsap.to('#people-walk', {xPercent: -110, ease: "power1.out", duration: 1 })
           gsap.to('.question-mark div', {yPercent: 110, ease: "expo", duration: 1 })
         }})
-        .from('.piramid-chart', {autoAlpha: 0, stagger:0.5, duration: tweenduration})
-        .from('.tpak-chart', {autoAlpha: 0, stagger:0.5, duration: tweenduration/2})
+        .from('.piramid-chart', {autoAlpha: 0, duration: tweenduration})
+        .from('.tpak-chart', {autoAlpha: 0, duration: tweenduration/2, onComplete: () => {
+          count++
+        }})
         .from('.ina-quote p', {yPercent: -100, duration: tweenduration})
         .from('#people-walk-2', {yPercent: 10, xPercent: 10, duration: tweenduration})
       }
@@ -339,10 +342,10 @@
         </div>
         <div class="piramid-container row">
           <div class="col-6 piramid-chart">
-            <PiramidChart />
+            <PiramidChart counter={count}/>
           </div>
           <div class="col-6 tpak-chart">
-            <TPAKChart />
+            <TPAKChart counter={count}/>
           </div>
           <div class="col-12 ina-quote">
             <p class="fs-24 text-center fw-bold">
@@ -570,7 +573,7 @@ div[class*=sec] {
 
 .ina-quote {
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   overflow: hidden;
   width: fit-content;
   height: fit-content;

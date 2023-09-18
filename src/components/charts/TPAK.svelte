@@ -1,5 +1,6 @@
 
 <script>
+    export let counter = 0;
     import {Chart} from "svelte-echarts";
     const options = {
     title: {
@@ -37,11 +38,10 @@
         }
     ]
     };
-    let count = 0;
 </script>
 <div class="tpak">
-    {#key count}
-    <Chart {options} key={count}/>
+    {#key counter}
+    <Chart {options} key={counter}/>
     <p class="piramid-desc fs-18 text-justify">
         Persentase Angkatan Kerja Terhadap Penduduk Usia Kerja (TPAK), Agustus 2022
         Dari seluruh penduduk usia kerja (15thn +), persentase angkatan kerja pada 
