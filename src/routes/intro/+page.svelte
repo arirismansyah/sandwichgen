@@ -214,18 +214,18 @@
       .to("#sec6", { position: "fixed", top: 0, y: 0 })
       .fromTo(
         ".sec6-elem1",
-        { opacity: 0, duration: 0.5 },
-        { duration: 0.5, opacity: 1 }
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
       )
       .fromTo(
         ".sec6-elem2",
-        { opacity: 0, duration: 0.5 },
-        { duration: 0.5, opacity: 1 }
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
       )
       .fromTo(
         ".sec6-elem3",
-        { opacity: 0, duration: 0.5 },
-        { duration: 0.5, opacity: 1 }
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
       );
 
     tl_8.fromTo(
@@ -269,7 +269,36 @@
 
 <div class="wrapper">
   <!-- pre section -->
-  <section id="sce0" class="content container d-flex align-items-center">
+
+  <section id="sec-a1" class="content container d-flex align-items-center">
+    <!--  -->
+    <figure class="content-bg-a bg-image-a bg-overlay bg-overlay-300">
+      <img src="/images/illustration/hand_are.png" alt="" />
+    </figure>
+  </section>
+
+  <section id="sec-a1" class="content container d-flex align-items-center">
+    <!--  -->
+    <figure class="content-bg-a bg-image-a bg-overlay bg-overlay-300">
+      <img src="/images/illustration/hand_u.png" alt="" />
+    </figure>
+  </section>
+
+  <section id="sec-a1" class="content container d-flex align-items-center">
+    <!--  -->
+    <figure class="content-bg-a bg-image-a bg-overlay bg-overlay-300">
+      <img src="/images/illustration/hand_sandwich.png" alt="" />
+    </figure>
+  </section>
+
+  <section id="sec-a1" class="content container d-flex align-items-center">
+    <!--  -->
+    <figure class="content-bg-a bg-image-a bg-overlay bg-overlay-300">
+      <img src="/images/illustration/hand_ask.png" alt="" />
+    </figure>
+  </section>
+
+  <section id="sec0" class="content container d-flex align-items-center">
     <div class="col">
       <figure class="content-bg1 bg-image-1 bg-overlay bg-overlay-300">
         <img src="/images/illustration/people2.png" alt="" />
@@ -464,15 +493,12 @@
     </div>
   </section>
 
-  <section id="sec7" class="content container d-flex align-items-center">
+  <section id="sec8" class="content container d-flex align-items-center">
     <div class="col">
       <figure class="content-bg2 bg-image-2 bg-overlay bg-overlay-300">
         <img src="/images/illustration/elder1.png" alt="" />
       </figure>
     </div>
-  </section>
-
-  <section id="sec8" class="content container d-flex align-items-center">
     <div class="row d-flex justify-content-end">
       <div class="col-8">
         <div class="row m-4">
@@ -530,6 +556,16 @@
     -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
     z-index: -1;
+  }
+
+  .bg-image-a {
+    position: relative;
+    bottom: -20vh;
+    left: 50vh;
+    transform: scale(0.6);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    z-index: -2;
   }
 
   .content-illust1 {
