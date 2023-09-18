@@ -1,6 +1,8 @@
 <script>
   import FloatNav from "../components/nav/FloatNav.svelte";
   import TrendChart from "../components/charts/Trend.svelte";
+  import PiramidChart from "../components/charts/Piramid.svelte";
+  import TPAKChart from "../components/charts/TPAK.svelte";
   import { onMount } from "svelte";
   import gsap from "gsap";
   import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
@@ -25,8 +27,8 @@
 
   onMount(() => {
     loadJS();
-    const splitType = new SplitType('#funfact-title');
-    // const splitType = new SplitType("");
+    new SplitType('#funfact-title');
+    new SplitType("#ina-title");
     // gsap animation
     gsap.registerPlugin(ScrollTrigger);
     const factor = 8;
@@ -96,8 +98,8 @@
         .to({}, {duration: tweenduration/2 })
         .from('.description.pt-6', {yPercent: -120, duration: tweenduration, ease:'power2.inOut'}) 
         .to({}, {duration: tweenduration/2 })
-        .to(elem, { autoAlpha: 0, duration: tweenduration })
-        .to({}, {duration: tweenduration })
+        .to(elem, { autoAlpha: 0, duration: tweenduration/2 })
+        .to({}, {duration: tweenduration/2})
       }
       else if (elem.id == "intro-funfact-section") {
         bgTimeline
@@ -119,7 +121,24 @@
         .to('.trend-chart', {autoAlpha: 0, duration: tweenduration})
         .to({}, {duration: tweenduration/2 })
         .from('.word-text', {yPercent: -500, duration: tweenduration})
-        .from('.wordcloud-desc p', {xPercent: 110, duration: tweenduration})
+        .from('.wordcloud-desc p', {xPercent: 110, duration: tweenduration, stagger: 0.05, delay: 0.05})
+        .to({}, {duration: tweenduration/2 })
+        .to(elem, { autoAlpha: 0, duration: tweenduration })
+      } else if (elem.id = 'intro-funfact-section') {
+        bgTimeline
+        .to(elem, { autoAlpha: 1, duration: tweenduration })
+        .from('#ina-title .word', {yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
+        .from('#people-walk', {xPercent: 110, ease: "expo", duration: tweenduration })
+        .from('.question-mark div', {yPercent: 110, ease: "expo", duration: tweenduration })
+        .to({}, {duration: tweenduration/2 })
+        .to('#ina-title .word', {yPercent: 250, stagger: 0.05, delay: 0.05, duration: tweenduration, onComplete: () => {
+          gsap.to('#people-walk', {xPercent: -110, ease: "power1.out", duration: 1 })
+          gsap.to('.question-mark div', {yPercent: 110, ease: "expo", duration: 1 })
+        }})
+        .from('.piramid-chart', {autoAlpha: 0, stagger:0.5, duration: tweenduration})
+        .from('.tpak-chart', {autoAlpha: 0, stagger:0.5, duration: tweenduration/2})
+        .from('.ina-quote p', {yPercent: -100, duration: tweenduration})
+        .from('#people-walk-2', {yPercent: 10, xPercent: 10, duration: tweenduration})
       }
 
       largeTL.add(bgTimeline, tldelay);
@@ -170,7 +189,7 @@
       </div> -->
     </figure>
 
-    <div class="container py-md-16 d-flex" id="container">
+    <div class="container py-md-16 d-flex" id="">
       <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
         <div class="col p-0">
         </div>
@@ -251,13 +270,8 @@
         srcset="/images/illustration/funfact_bot.png"
         alt=""
       />
-      <!-- <div class="talk-bubble tri-right round btm-right person-bubble">
-        <div class="talktext">
-          <p class="text-center">Hai!, Saya Bhaskara</p>
-        </div>
-      </div> -->
     </figure>
-    <div class="container py-md-16 d-flex" id="container">
+    <div class="container py-md-16 d-flex" id="">
       <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
         <div class="col-12 align-item-center">
           <div class="funfact-question text-center">
@@ -298,8 +312,66 @@
       </div>
     </div>
   </div>
-</section>
+  <!-- generasi sandwhich di ina -->
+  <div class="section" id="ina-condition">
+    <figure>
+      <img
+        id="people-walk"
+        class="w-auto mt-0 people-walk"
+        src="/images/illustration/people_walk.png"
+        srcset="/images/illustration/people_walk.png"
+        alt=""
+      />
+      <div class="question-mark">
+        <div class="fs-200 fw-bolder q-mark">
+          ?
+        </div>
+      </div>
+    </figure>
+    <div class="container py-md-16 d-flex" id="">
+      <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
+        <div class="col-12 align-item-center">
+          <div class="ina-question text-center">
+            <p class="fs-56 pt-5 text-center" id="ina-title">
+              Lantas, Bagaimana gambaran <b>kondisi penduduknya</b>
+            </p>
+          </div>
+        </div>
+        <div class="piramid-container row">
+          <div class="col-6 piramid-chart">
+            <PiramidChart />
+          </div>
+          <div class="col-6 tpak-chart">
+            <TPAKChart />
+          </div>
+          <div class="col-12 ina-quote">
+            <p class="fs-24 text-center fw-bold">
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px" width="32" height="32" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
+                <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+              </svg>
+              Mayoritas penduduk usia pada generasi muda dan tingginya tingginya 
+              penduduk bukan angkatan kerja mengindikasikan adanya generasi 
+              sandwich di Indonesia.
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px" width="32" height="32" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
+                <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+              </svg>
+            </p>
+            <figure>
 
+              <img
+                id="people-walk-2"
+                class="w-auto mt-0 people-walk-2"
+                src="/images/illustration/people_walk.png"
+                srcset="/images/illustration/people_walk.png"
+                alt=""
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- /section -->
 <FloatNav />
 
@@ -373,6 +445,7 @@ div[class*=sec] {
 }
 .container {
   /* overscroll-behavior: none; */
+  position: relative;
   min-height: 100vh;
 }
 
@@ -384,14 +457,14 @@ div[class*=sec] {
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
-.funfact-question {
+.funfact-question, .ina-question {
   position: fixed;
   left: 10%;
   top: 15%;
   width: 80%;
   overflow: hidden;
 }
-#funfact-title .line{
+#funfact-title .line, #ina-title .line{
   text-align: center;
 }
 #chart-desc {
@@ -465,6 +538,49 @@ div[class*=sec] {
   top: 45%;
   left: 50%;
   overflow: hidden;
+}
+/* Word Cloud end */
+
+/* Ina start */
+
+.question-mark {
+  position: fixed;
+  right: 22%;
+  top: 24%;
+  height: fit-content;
+  transform: rotate(-45deg);
+  overflow: hidden;
+}
+
+#people-walk, #people-walk-2 {
+  position: fixed;
+  transform: scale(0.4);
+  left: 30%;
+  top: -23%;
+  z-index: 1;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+#people-walk-2 {
+  transform: scale(0.3) rotate(-20deg);
+  left: 40%;
+  top: 10%;
+}
+
+.ina-quote {
+  position: absolute;
+  bottom: 10%;
+  overflow: hidden;
+  width: fit-content;
+  height: fit-content;
+}
+
+.ina-quote p {
+  background: #45C3A0;
+  color: whitesmoke;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .talk-bubble {
