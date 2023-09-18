@@ -99,7 +99,7 @@
         .to({}, {duration: tweenduration/2 })
         .from('.description.pt-6', {yPercent: -120, duration: tweenduration, ease:'power2.inOut'}) 
         .to({}, {duration: tweenduration/2 })
-        .to(elem, { autoAlpha: 0, duration: tweenduration/2 })
+        .to(elem, { autoAlpha: 0, duration: tweenduration/8 })
         .to({}, {duration: tweenduration/2})
       }
       else if (elem.id == "intro-funfact-section") {
@@ -110,7 +110,7 @@
         .from('#funfact-title .word', {yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
         .to({}, {duration: tweenduration/2 })
         .to("#funfact-title .word", {autoAlpha:0, duration: tweenduration/2})
-        .to(".funfact-bot", {yPercent: -100, xPercent: 70, ease: "power1.inOut", scale: 0.4, rotationY: 360, rotationX: 360, duration: tweenduration*4})
+        .to(".funfact-bot", {yPercent: -100, xPercent: 65, ease: "power1.inOut", scale: 0.4, rotationY: 360, rotationX: 360, duration: tweenduration*4})
         .to({}, {duration: tweenduration/2 })
         .to('.trend-chart', {autoAlpha: 1, duration: tweenduration})
         .from('#chart-desc p', {xPercent: -110, duration:tweenduration, onComplete: () => {
@@ -124,8 +124,8 @@
         .from('.word-text', {yPercent: -500, duration: tweenduration})
         .from('.wordcloud-desc p', {xPercent: 110, duration: tweenduration, stagger: 0.05, delay: 0.05})
         .to({}, {duration: tweenduration/2 })
-        .to(elem, { autoAlpha: 0, duration: tweenduration/2 })
-      } else if (elem.id = 'intro-funfact-section') {
+        .to(elem, { autoAlpha: 0, duration: tweenduration/8 })
+      } else if (elem.id == 'ina-condition') {
         bgTimeline
         .to(elem, { autoAlpha: 1, duration: tweenduration/2 })
         .from('#ina-title .word', {yPercent: -250, stagger: 0.05, delay: 0.05, duration: tweenduration})
@@ -140,11 +140,104 @@
         .from('.tpak-chart', {autoAlpha: 0, duration: tweenduration/2, onComplete: () => {
           count++
         }})
-        .from('.ina-quote p', {yPercent: -100, duration: tweenduration})
-        .from('#people-walk-2', {yPercent: 10, xPercent: 10, duration: tweenduration})
+        .from('.ina-quote p', {yPercent: -110, duration: tweenduration})
+        .from('#people-walk-2', {yPercent: 50, xPercent: 50, duration: tweenduration})
+        .to({}, {duration: tweenduration/2 })
+        .to(elem, {autoAlpha:0, duration: tweenduration/8})
+      } else if (elem.id == 'number-drop-section') {
+        bgTimeline
+          .from('.number-cont-first .number', {autoAlpha: 0, yPercent: -110, duration: tweenduration*2, onStart: () => {
+            let tempTimeline = gsap.timeline();
+            // gsap.from('.number-cont-first .number', {
+            //   textContent: 20,
+            //   duration: 2,
+            //   ease: "power1.inOut",
+            //   snap: { textContent: 0.01 },
+            //   toggleActions: "play pause resume reverse",
+            //   stagger: {
+            //     each: 1.0,
+            //     onUpdate: function() {
+            //       this.targets()[0].innerHTML = this.targets()[0].textContent;
+            //     },
+            //   }
+            // })
+          }})
+          .from('.number-cap:nth-of-type(2)', {autoAlpha: 0, yPercent: -110, duration: tweenduration/2})
+          .from('.number-desc:nth-of-type(1)', {autoAlpha: 0, yPercent: -110, duration: tweenduration })
+          .to({}, {duration: tweenduration*2 })
+          .to('.number-cap:nth-of-type(2)', {autoAlpha: 0, yPercent: 110, duration: tweenduration/2})
+          .to('.number-cont-first .number', {autoAlpha: 0, yPercent: 110, duration: tweenduration/2})
+          .to('.number-desc:nth-of-type(1)', {autoAlpha: 0, yPercent: 110, duration: tweenduration })
+          .to({}, {duration: tweenduration*2 })
+          .from('.number-cont-second .number', {autoAlpha: 0, yPercent: -110, duration: tweenduration, onComplete: () => {
+            let tempTimeline = gsap.timeline();
+            // gsap.from('.number-cont-second .number', {
+            //   textContent: 40,
+            //   duration: 2,
+            //   ease: "power1.inOut",
+            //   snap: { textContent: 0.01 },
+            //   toggleActions: "play pause resume reverse",
+            //   stagger: {
+            //     each: 1.0,
+            //     onUpdate: function() {
+            //       this.targets()[0].innerHTML = this.targets()[0].textContent;
+            //     },
+            //   }
+            // })
+          }})
+          .from('.number-desc:nth-of-type(2)', {autoAlpha: 0, yPercent: -110, duration: tweenduration })
+          .to({}, {duration: tweenduration*2 })
+          .to('.number-cont-second .number', {autoAlpha: 0, yPercent: 110, duration: tweenduration/2})
+          .to('.number-desc:nth-of-type(2)', {autoAlpha: 0, yPercent: 110, duration: tweenduration })
+          .to({}, {duration: tweenduration*2 })
+          .from('.number-cont-third .number', {autoAlpha: 0, yPercent: -110, duration: tweenduration, onComplete: () => {
+            let tempTimeline = gsap.timeline();
+            // gsap.from('.number-cont-third .number', {
+            //   textContent: 30,
+            //   duration: 2,
+            //   ease: "power1.inOut",
+            //   snap: { textContent: 0.01 },
+            //   toggleActions: "play pause resume reverse",
+            //   stagger: {
+            //     each: 1.0,
+            //     onUpdate: function() {
+            //       this.targets()[0].innerHTML = this.targets()[0].textContent;
+            //     },
+            //   }
+            // })
+          }})
+          .from('.number-desc:nth-of-type(3)', {autoAlpha: 0, yPercent: -110, duration: tweenduration })
+          .to({}, {duration: tweenduration*2 })
+          .to('.number-cont-third .number', {autoAlpha: 0, yPercent: 110, duration: tweenduration/2})
+          .to('.number-desc:nth-of-type(3)', {autoAlpha: 0, yPercent: 110, duration: tweenduration })
+          .to({}, {duration: tweenduration*2 })
+          .from('.conclusion-number', {autoAlpha: 0, duration: tweenduration})
+          .to({}, {duration: tweenduration/2 })
+          .to('.conclusion-number', {autoAlpha: 0, duration: tweenduration})
+      } else if (elem.id == 'nonoffstat-section') {
+        bgTimeline
+          .from('#nonoffstat-section .row', {yPercent: -110, autoAlpha: 0, duration: tweenduration, ease: 'power2.inOut'})
+          .from('#nonoffstat-conclude', {yPercent: 110, autoAlpha: 0, duration: tweenduration, ease: 'power2.inOut'})
+          .to({}, {duration: tweenduration })
+          .to('#nonoffstat-section .row', {yPercent: -110, autoAlpha: 0, duration: tweenduration, ease: 'power2.inOut'})
+          .to('#nonoffstat-conclude', {yPercent: 110, autoAlpha: 0, duration: tweenduration, ease: 'power2.inOut'})
+          
       }
 
-      largeTL.add(bgTimeline, tldelay);
+
+      if (elem.id == 'intro-funfact-section') {
+        largeTL.add(bgTimeline, 9.5);
+      }
+      else if (elem.id == 'ina-condition') {
+        largeTL.add(bgTimeline, 16);
+      } else if (elem.id == 'number-drop-section') {
+        largeTL.add(bgTimeline, 20.5);
+      } else if (elem.id == 'nonoffstat-section') {
+        largeTL.add(bgTimeline, 31);
+      }
+      else {
+        largeTL.add(bgTimeline, tldelay);
+      }
     })
 
 
@@ -331,7 +424,7 @@
         </div>
       </div>
     </figure>
-    <div class="container py-md-16 d-flex" id="">
+    <div class="container py-md-16 d-flex">
       <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-top mx-50 align-items-top">
         <div class="col-12 align-item-center">
           <div class="ina-question text-center">
@@ -340,45 +433,220 @@
             </p>
           </div>
         </div>
-        <div class="piramid-container row">
-          <div class="col-6 piramid-chart">
-            <PiramidChart counter={count}/>
-          </div>
-          <div class="col-6 tpak-chart">
-            <TPAKChart counter={count}/>
-          </div>
-          <div class="col-12 ina-quote">
-            <p class="fs-24 text-center fw-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px" width="32" height="32" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
-                <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
-              </svg>
-              Mayoritas penduduk usia pada generasi muda dan tingginya tingginya 
-              penduduk bukan angkatan kerja mengindikasikan adanya generasi 
-              sandwich di Indonesia.
-              <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px" width="32" height="32" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
-                <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
-              </svg>
-            </p>
-            <figure>
+      </div>
+      <div class="piramid-container row">
+        <div class="col-6 piramid-chart">
+          <PiramidChart counter={count}/>
+        </div>
+        <div class="col-6 tpak-chart">
+          <TPAKChart counter={count}/>
+        </div>
+        <div class="col-12 ina-quote">
+          <p class="fs-24 text-center fw-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px" width="32" height="32" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
+              <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+            </svg>
+            Mayoritas penduduk usia pada generasi muda dan tingginya tingginya 
+            penduduk bukan angkatan kerja mengindikasikan adanya generasi 
+            sandwich di Indonesia.
+          </p>
+          <figure>
+            <img
+              id="people-walk-2"
+              class="w-auto mt-0 people-walk-2"
+              src="/images/illustration/people_walk.png"
+              srcset="/images/illustration/people_walk.png"
+              alt=""
+            />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
 
-              <img
-                id="people-walk-2"
-                class="w-auto mt-0 people-walk-2"
-                src="/images/illustration/people_walk.png"
-                srcset="/images/illustration/people_walk.png"
-                alt=""
-              />
-            </figure>
+  <!-- number drop -->
+  <div class="section" id="number-drop-section">
+    <div class="container">
+      <div class="row" style="height: 100vh!important">
+        <div class="col-6">
+          <div class="number-cont">
+            <div class="number-cont-first">
+              <p class="number fs-150 fw-bolder lh-1">
+                44.67
+              </p>
+              <p class="text-center fs-18 m-0 p-0 number-cap">
+                Rasio ketergantungan
+              </p>
+            </div>
+            <div class="number-cont-second">
+              <p class="number fs-150 fw-bolder lh-1">
+                78.27%
+              </p>
+              <p class="text-center fs-18 m-0 p-0 number-cap">
+                
+              </p>
+            </div>
+            <div class="number-cont-third">
+              <p class="number fs-150 fw-bolder lh-1">
+                62.64%
+              </p>
+              <p class="text-center fs-18 m-0 p-0 number-cap">
+                
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="desc-cont">
+            <p class="number-desc fs-20 me-8">
+              Masih ada 44-45 per 100 orang usia non-produktif di Indonesia bergantung kepada mereka yang berusia produktif. (2022)
+            </p>
+            <p class="number-desc fs-20 me-8">
+              Rumah tangga lansia dengan sumber pembiayaan ditopang oleh anggota 
+              rumah tangga yang bekerja. (SP2020)
+            </p>
+            <p class="number-desc fs-20 me-8">
+              Penduduk lanjut usia di Indonesia tinggal bersama anak cucunya (Susenas 2017)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="conclusion-number">
+    <div class="fs-32 text-italic text-center font-italic worldbank-quotes">
+      <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px" width="32" height="32" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
+        <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+      </svg>
+      <i><strong>Rasio ketergantungan Indonesia <span class="underline-3 style-2 yellow">lebih tinggi</span> dari beberapa negara Asia lainnya, seperti: Singapura (37), Brunei Darussalam (39), Korea Selatan (41), Malaysia (43)</strong></i>
+      <br>Sumber: worldbank      
+    </div>
+  </div>
+
+  <!-- non-offstat -->
+  <div class="section" id="nonoffstat-section">
+    <div class="container">
+      <div class="row align-item-center" style="height: 100vh!important">
+          <div class="col-12 pe-15 my-auto">
+            <div class="row nn-1">
+              <div class="col-6 nn-number fs-150 fw-bolder lh-1 text-warning">48,7%</div>
+              <div class="col-6 text-center my-auto">
+                <p class="text-center fs-20 my-auto">
+                  Masyarakat produktif Indonesia merupakan generasi sandwich yang memiliki tanggungan finansial atas keluarganya
+                </p>
+              </div>
+            </div>
+            <div class="row nn-2">
+              <div class="col-6 fs-150 nn-number fw-bolder lh-1 text-success">83,6%</div>
+              <div class="col-6 my-auto">
+                <p class="text-center fs-20 my-auto">
+                  Sandwich Generation di Indonesia percaya kalau mereka mampu merawat tanggungan dengan baik
+                </p>
+              </div>
+            </div>
+            <div class="row nn-3">
+              <div class="col-6 fs-150 nn-number fw-bolder lh-1 text-danger">13,4%</div>
+              <div class="col-6 text-center my-auto">
+                <p class="text-center fs-20 my-auto">
+                  Sandwich Generation memiliki kesiapan finansial dalam memenuhi kebutuhan pokok, menabung, dan berinvestasi
+                </p> 
+              </div>
+            </div>
+
+            <div class="row mt-7">
+              <div class="col-12">
+
+            <div class="fs-28 text-italic text-center" id="nonoffstat-conclude">
+              <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 10px" width="32" height="32" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
+                <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+                </svg>
+                <i><strong>Hampir <span class="underline-2 style-2 yellow">setengah penduduk produktif</span> Indonesia merupakan Sandwich Generation, 
+                  namun tidak banyak yang memiliki kesiapan finansial.
+                  </strong></i>
+                <br>Sumber: katadata.co.id      
+            </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <!-- /section -->
 <FloatNav />
 
 <style>
+
+#nonoffstat-section .nn-1 p{
+    color: whitesmoke;
+    font-weight: bold;
+    background: #FAB757;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  #nonoffstat-section .nn-2 p{
+    color: whitesmoke;
+    font-weight: bold;
+    background: #45C3A0;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  #nonoffstat-section .nn-3 p{
+    color: whitesmoke;
+    font-weight: bold;
+    background: #E1626B;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .conclusion-number {
+    height: 50vh;
+    width: 100vw;
+    position: fixed;
+    top: 30%!important;
+    left: 0%;
+    padding: 20px;
+  }
+  .conclusion-number div {
+    top: 50%;
+    margin: 5%
+  }
+  /* number container */
+.number-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100vh;
+  padding-right: 20px;
+}
+.number-cont div {
+  overflow: hidden;
+  height: fit-content;
+  padding-right: 20px;
+  position: fixed;
+}
+.desc-cont {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 100vh;
+  padding-right: 20px;
+  padding-right: 75px;
+}
+.desc-cont p {
+  margin-bottom: 0 !important;;
+}
+.number-desc {
+  color: whitesmoke;
+  background-color:#FAB757;
+  border-radius: 10px;
+  text-align: justify;
+  padding: 20px;
+  margin-right: 100px!important;
+  position: fixed;
+}
+
 /* CSS */
 .content-3 {
   position: absolute;
@@ -545,7 +813,6 @@ div[class*=sec] {
 /* Word Cloud end */
 
 /* Ina start */
-
 .question-mark {
   position: fixed;
   right: 22%;
@@ -573,7 +840,7 @@ div[class*=sec] {
 
 .ina-quote {
   position: absolute;
-  bottom: 5%;
+  bottom: 2%;
   overflow: hidden;
   width: fit-content;
   height: fit-content;
