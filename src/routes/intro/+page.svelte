@@ -536,7 +536,8 @@
 <style>
   .content {
     height: 100vh;
-    left: 15vh;
+    margin-left: 10vh;
+    margin-right: 10vh;
   }
 
   .bg-image-1 {
