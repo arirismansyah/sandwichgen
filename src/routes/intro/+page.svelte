@@ -1,7 +1,7 @@
 <script>
   // import components
-  import Backgroud from "./../../components/intro/Backgroud.svelte";
-  import FloatNav from "./../../components/nav/FloatNav.svelte";
+  import Backgroud from "../../components/intro/Backgroud.svelte";
+  import FloatNav from "../../components/nav/FloatNav.svelte";
 
   // import svelte
   import { onMount } from "svelte";
@@ -43,6 +43,43 @@
         start: "top bottom",
         end: "bottom center",
         toggleActions: "restart none none reverse",
+      },
+    });
+
+    const tl_hand1 = gsap.timeline({
+      scrollTrigger: {
+        // markers: "true",
+        trigger: "#intro-hand-1",
+        start: "top bottom",
+        end: "bottom center",
+        toggleActions: "restart none none reverse",
+      },
+    });
+    const tl_hand2 = gsap.timeline({
+      scrollTrigger: {
+        // markers: "true",
+        trigger: "#intro-hand-2",
+        start: "top bottom",
+        end: "bottom center",
+        toggleActions: "restart reverse complete reverse",
+      },
+    });
+    const tl_hand3 = gsap.timeline({
+      scrollTrigger: {
+        // markers: "true",
+        trigger: "#intro-hand-3",
+        start: "top bottom",
+        end: "bottom center",
+        toggleActions: "restart reverse complete reverse",
+      },
+    });
+    const tl_hand4 = gsap.timeline({
+      scrollTrigger: {
+        // markers: "true",
+        trigger: "#intro-hand-4",
+        start: "top bottom",
+        end: "bottom center",
+        toggleActions: "restart reverse complete reverse",
       },
     });
 
@@ -136,17 +173,81 @@
       },
     });
 
-    tl_0.fromTo(
-      ".content-bg1",
-      { opacity: 0, duration: 0.5, y: "-20%" },
-      {
-        ease: sineOut,
-        duration: 0.5,
-        y: "0",
-        position: "fixed",
-        opacity: 1,
-      }
-    );
+    tl_hand1
+      // .to("#bg-hand-2", { opacity: 0 })
+      // .to("#bg-hand-3", { opacity: 0 })
+      // .to("#bg-hand-4", { opacity: 0 })
+      .fromTo(
+        "#bg-hand-1",
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
+      )
+      .fromTo(
+        "#cap-hand1",
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
+      );
+
+    tl_hand2
+      // .to("#bg-hand-1", { opacity: 0 })
+      // .to("#bg-hand-3", { opacity: 0 })
+      // .to("#bg-hand-4", { opacity: 0 })
+      .fromTo(
+        "#bg-hand-2",
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
+      )
+      .fromTo(
+        "#cap-hand2",
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
+      );
+
+    tl_hand3
+      // .to("#bg-hand-1", { opacity: 0 })
+      // .to("#bg-hand-2", { opacity: 0 })
+      // .to("#bg-hand-4", { opacity: 0 })
+      .fromTo(
+        "#bg-hand-3",
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
+      )
+      .fromTo(
+        "#cap-hand3",
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
+      );
+    tl_hand4
+      // .to("#bg-hand-1", { opacity: 0 })
+      // .to("#bg-hand-2", { opacity: 0 })
+      // .to("#bg-hand-3", { opacity: 0 })
+      .fromTo(
+        "#bg-hand-4",
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
+      )
+      .fromTo(
+        "#cap-hand4",
+        { opacity: 0, duration: 0.2 },
+        { duration: 0.2, opacity: 1 }
+      );
+
+    tl_0
+      .to("#bg-hand-1", { opacity: 0 })
+      .to("#bg-hand-3", { opacity: 0 })
+      .to("#bg-hand-2", { opacity: 0 })
+      .to("#bg-hand-4", { opacity: 0 })
+      .fromTo(
+        ".content-bg1",
+        { opacity: 0, duration: 0.5, y: "-20%" },
+        {
+          ease: sineOut,
+          duration: 0.5,
+          y: "0",
+          position: "fixed",
+          opacity: 1,
+        }
+      );
 
     tl_5.to(".content-bg1", {
       ease: sineOut,
@@ -266,36 +367,106 @@
     onload="this.rel='stylesheet'"
   />
 </svelte:head>
-
+<section
+  class="wrapper image-wrapper bg-image bg-overlay"
+  data-image-src="/assets_template/img/photos/bg2.jpg"
+>
+  <!--  -->
+</section>
 <div class="wrapper">
   <!-- pre section -->
 
-  <section id="sec-a1" class="content container d-flex align-items-center">
-    <!--  -->
-    <figure class="content-bg-a bg-image-a bg-overlay bg-overlay-300">
+  <section
+    id="intro-hand-1"
+    class="content container d-flex align-items-center"
+  >
+    <figure
+      id="bg-hand-1"
+      class="content-bg-a bg-hands bg-overlay bg-overlay-300"
+    >
       <img src="/images/illustration/hand_are.png" alt="" />
     </figure>
+    <div id="cap-hand-1" class="col">
+      <div class="row">
+        <div class="col">
+          <h3 class="display-3 px-xl-10 mb-0 text-center">
+            Tak asing dengan cerita diatas?
+          </h3>
+        </div>
+      </div>
+      <div class="row" />
+    </div>
+    <!--  -->
   </section>
 
-  <section id="sec-a1" class="content container d-flex align-items-center">
+  <section
+    id="intro-hand-2"
+    class="content container d-flex align-items-center"
+  >
     <!--  -->
-    <figure class="content-bg-a bg-image-a bg-overlay bg-overlay-300">
+    <figure
+      id="bg-hand-2"
+      class="content-bg-a bg-hands bg-overlay bg-overlay-300"
+    >
       <img src="/images/illustration/hand_u.png" alt="" />
     </figure>
+    <div id="cap-hand-2" class="col">
+      <div class="row">
+        <div class="col">
+          <h3 class="display-3 px-xl-10 mb-0 text-center">
+            Pernahkan kalian bertemu dengan Mardiansah lain di sekitar kalian?
+          </h3>
+        </div>
+      </div>
+      <div class="row" />
+    </div>
   </section>
 
-  <section id="sec-a1" class="content container d-flex align-items-center">
+  <section
+    id="intro-hand-3"
+    class="content container d-flex align-items-center"
+  >
     <!--  -->
-    <figure class="content-bg-a bg-image-a bg-overlay bg-overlay-300">
+    <figure
+      id="bg-hand-3"
+      class="content-bg-a bg-hands bg-overlay bg-overlay-300"
+    >
       <img src="/images/illustration/hand_sandwich.png" alt="" />
     </figure>
+    <div id="cap-hand-3" class="col">
+      <div class="row">
+        <div class="col">
+          <h3 class="display-3 px-xl-10 mb-0 text-center">
+            Atau bahkan, kalian bernasib sama dengan Mardiansah?
+          </h3>
+        </div>
+      </div>
+      <div class="row" />
+    </div>
   </section>
 
-  <section id="sec-a1" class="content container d-flex align-items-center">
+  <section
+    id="intro-hand-4"
+    class="content container d-flex align-items-center"
+  >
     <!--  -->
-    <figure class="content-bg-a bg-image-a bg-overlay bg-overlay-300">
+    <figure
+      id="bg-hand-4"
+      class="content-bg-a bg-hands bg-overlay bg-overlay-300"
+    >
       <img src="/images/illustration/hand_ask.png" alt="" />
     </figure>
+    <div id="cap-hand-4" class="col">
+      <div class="row">
+        <div class="col">
+          <h3 class="display-3 px-xl-10 mb-0 text-center">
+            Ya. Mardiansah adalah satu dari sekian banyak Generasi Sandwich di
+            Indonesia.
+          </h3>
+        </div>
+      </div>
+      <div class="row" />
+    </div>
   </section>
 
   <section id="sec0" class="content container d-flex align-items-center">
@@ -536,8 +707,8 @@
 <style>
   .content {
     height: 100vh;
-    margin-left: 10vh;
-    margin-right: 10vh;
+    left: 10vw;
+    right: 10vw;
   }
 
   .bg-image-1 {
@@ -559,14 +730,14 @@
     z-index: -1;
   }
 
-  .bg-image-a {
-    position: relative;
+  .bg-hands {
+    position: fixed;
     bottom: -20vh;
     left: 50vh;
     transform: scale(0.6);
     -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
-    z-index: -2;
+    z-index: -1;
   }
 
   .content-illust1 {
